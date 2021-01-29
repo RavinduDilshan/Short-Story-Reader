@@ -124,7 +124,8 @@ class Home extends StatelessWidget {
             DrawerHeader(
               child: Text('මාවතේ ගීතය'),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                image: DecorationImage(
+                image: AssetImage("res/drawer_img.jpg"), fit: BoxFit.cover)
               ),
             ),
             ListTile(
