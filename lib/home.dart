@@ -57,7 +57,7 @@ class Home extends StatelessWidget {
      Container(
          decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("res/0.png"), fit: BoxFit.cover)),
+                image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
      child:Scaffold(
 
 
