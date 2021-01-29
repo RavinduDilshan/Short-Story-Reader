@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Book App',
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        primarySwatch: Colors.cyan,
+        primarySwatch: Colors.blue,
         platform: TargetPlatform.iOS,
       ),
       home: Home(),

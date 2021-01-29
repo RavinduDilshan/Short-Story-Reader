@@ -14,10 +14,10 @@ class Home extends StatelessWidget {
     //app bar
     final appBar = AppBar(
       elevation: .5,
-      leading: IconButton(
-        icon: Icon(Icons.menu),
-        onPressed:(){}
-      ),
+      // leading: IconButton(
+      //   icon: Icon(Icons.menu),
+      //   onPressed:(){}
+      // ),
       title: Text('මාවතේ ගීතය'),
       actions: <Widget>[
         IconButton(
@@ -49,12 +49,21 @@ class Home extends StatelessWidget {
         );
 
 
-    
 
 
 
-     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+
+     return
+     Container(
+         decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("res/0.png"), fit: BoxFit.cover)),
+     child:Scaffold(
+
+
+
+      // backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Colors.transparent,
       appBar: appBar,
       body: FutureBuilder(
         future: httpService.getPosts(),
@@ -62,6 +71,7 @@ class Home extends StatelessWidget {
           if (snapshot.hasData) {
             List<Post> posts = snapshot.data;
             return  CustomScrollView(
+
       primary: false,
       slivers: <Widget>[
         SliverPadding(
@@ -80,12 +90,67 @@ class Home extends StatelessWidget {
         )
       ],
     );
-           
+
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: Column(
+                  mainAxisAlignment:MainAxisAlignment.center,
+                  children: [
+                     CircularProgressIndicator(),
+                     Text("මදක් රැදීසිටින්න...",
+                      style: TextStyle(
+                            fontSize:20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
+  ),
+                     )
+                  ],
+
+                ),
+              // child: CircularProgressIndicator(),
+
+              );
           }
         },
       ),
-    );
+       drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('මාවතේ ගීතය'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+
+
+    )
+     );
   }
 }
