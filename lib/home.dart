@@ -129,7 +129,14 @@ class Home extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+               leading: Icon(Icons.home),
+              title: Text('Home',
+              style: TextStyle(
+                fontSize: 20
+              ),
+
+
+              ),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -138,7 +145,83 @@ class Home extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              leading: Icon(Icons.bookmark),
+              title: Text('Bookmarks',
+                style: TextStyle(
+                fontSize: 20
+                ),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Authors',
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.swap_vertical_circle),
+              title: Text('Visit Web',
+              style: TextStyle(
+                fontSize: 20
+              ),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+              ListTile(
+              leading: Icon(Icons.share),
+              title: Text('Invite Friends',
+              style: TextStyle(
+                fontSize: 20
+              ),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Contact Us',
+              style: TextStyle(
+                fontSize: 20
+              ),
+
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              leading: Icon(Icons.code),
+              title: Text('About Developer',
+              style: TextStyle(
+                fontSize: 20
+              ),
+              ),
               onTap: () {
                 // Update the state of the app
                 // ...
