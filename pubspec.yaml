@@ -58,10 +58,7 @@ flutter:
     - res/9.png
     - res/0.jpg
     - res/drawer_img.jpg
-    # - assets/images/temp.jpg
-    # - assets/images/un.jpg
-    # - assets/images/soil.jpg
-    # - assets/images/yo.jpg
+    
 
 
   fonts:
