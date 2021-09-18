@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sensor_app/authors.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'bookmarks.dart';
@@ -99,10 +100,8 @@ class MyDrawer extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              Share.share(
+                  'මාවතේ ගීතය ඇප් එක ඩවුන්ලෝඩ් කරගන්න ක්ලික් කරන්න - https://example.com');
             },
           ),
           ListTile(
