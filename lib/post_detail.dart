@@ -1,6 +1,7 @@
 import './posts_model.dart';
 import 'package:flutter/material.dart';
 import 'rating_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PostDetail extends StatelessWidget {
   final Post post;
@@ -9,29 +10,24 @@ class PostDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///create text widget
+    text(String data,
+            {Color color = Colors.black87,
+            num size = 14,
+            EdgeInsetsGeometry padding = EdgeInsets.zero,
+            bool isBold = false}) =>
+        Padding(
+          padding: padding,
+          child: Text(
+            data,
+            style: TextStyle(
+                color: color,
+                fontSize: size.toDouble(),
+                fontWeight: isBold ? FontWeight.bold : FontWeight.normal),
+          ),
+        );
 
-      ///create text widget
-  text(String data,
-          {Color color = Colors.black87,
-          num size = 14,
-          EdgeInsetsGeometry padding = EdgeInsets.zero,
-          bool isBold = false}) =>
-      Padding(
-        padding: padding,
-        child: Text(
-          data,
-          style: TextStyle(
-              color: color,
-              fontSize: size.toDouble(),
-              fontWeight: isBold ? FontWeight.bold : FontWeight.normal),
-        ),
-      );
-
-
-
-
-
-     final appBar = AppBar(
+    final appBar = AppBar(
       elevation: .5,
       title: Text('මාවතේ ගීතය'),
       actions: <Widget>[
@@ -58,11 +54,10 @@ class PostDetail extends StatelessWidget {
             ),
           ),
         ),
-       
       ],
     );
 
-     ///detail top right
+    ///detail top right
     final topRight = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -90,17 +85,20 @@ class PostDetail extends StatelessWidget {
           shadowColor: Colors.blue.shade200,
           elevation: 5.0,
           child: MaterialButton(
-            onPressed: (){},
+            onPressed: () async {
+             
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString('postid', post.id.toString());
+            },
             minWidth: 160.0,
             color: Colors.blue,
-            child: text('READ IN BLOGGER', color: Colors.white, size: 13),
+            child: text('පසුවට කියවන්න', color: Colors.white, size: 13),
           ),
         )
       ],
     );
 
-
-final topContent = Container(
+    final topContent = Container(
       color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(bottom: 16.0),
       child: Row(
@@ -124,15 +122,11 @@ final topContent = Container(
       ),
     );
 
-
-
-
-
-
     return Scaffold(
-        appBar: appBar,
-        body:  Column(
+      appBar: appBar,
+      body: Column(
         children: <Widget>[topContent, bottomContent],
-      ),);
+      ),
+    );
   }
 }

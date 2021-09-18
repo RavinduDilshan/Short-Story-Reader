@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import './home.dart';
+import 'bookmarks.dart';
 
 void main() => runApp(new MyApp());
 
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
       ),
       home: Home(),
+
+
+      
 
     );
   }
