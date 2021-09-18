@@ -4,6 +4,7 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'bookmarks.dart';
+import 'contact.dart';
 import 'home.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -107,14 +108,15 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.message),
             title: Text(
-              'අපව අමතන්න',
+              'අපට කියන්න',
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => contact(),
+                ),
+              );
             },
           ),
           ListTile(
