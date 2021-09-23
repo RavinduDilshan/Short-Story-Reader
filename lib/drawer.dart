@@ -20,119 +20,131 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
-      child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("res/drawer_img.jpg"),
-                    fit: BoxFit.cover)),
+      child: Container(
+        decoration: BoxDecoration(
+          image: new DecorationImage(
+            image: AssetImage("res/0.jpg"),
+            fit: BoxFit.cover,
           ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text(
-              'ප්‍රධාන පිටුව',
-              style: TextStyle(fontSize: 20),
+        ),
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("res/drawer_img.jpg"),
+                      fit: BoxFit.cover)),
             ),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Home(),
-                ),
-              );
-            },
-          ),
-          // ListTile(
-          //   leading: Icon(Icons.bookmark),
-          //   title: Text(
-          //     'සුරැකුම්',
-          //     style: TextStyle(fontSize: 20),
-          //   ),
-          //   onTap: () {
-          //     // Update the state of the app
-          //     // ...
-          //     // Then close the drawer
-          //     // Navigator.pop(context);
-          //     Navigator.of(context).push(
-          //       MaterialPageRoute(
-          //         builder: (context) => Bookmarks(),
-          //       ),
-          //     );
-          //   },
-          // ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text(
-              'ලේඛක මඩුල්ල',
-              style: TextStyle(fontSize: 20),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.orange.shade300,
+              ),
+              title: Text(
+                'ප්‍රධාන පිටුව',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Home(),
+                  ),
+                );
+              },
             ),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              // Navigator.pop(context);
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => authors(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.swap_vertical_circle),
-            title: Text(
-              'වෙබ් පිටුව',
-              style: TextStyle(fontSize: 20),
+            // ListTile(
+            //   leading: Icon(Icons.bookmark),
+            //   title: Text(
+            //     'සුරැකුම්',
+            //     style: TextStyle(fontSize: 20),
+            //   ),
+            //   onTap: () {
+            //     // Update the state of the app
+            //     // ...
+            //     // Then close the drawer
+            //     // Navigator.pop(context);
+            //     Navigator.of(context).push(
+            //       MaterialPageRoute(
+            //         builder: (context) => Bookmarks(),
+            //       ),
+            //     );
+            //   },
+            // ),
+            ListTile(
+              leading: Icon(Icons.person, color: Colors.orange.shade300),
+              title: Text(
+                'ලේඛක මඩුල්ල',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                // Navigator.pop(context);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => authors(),
+                  ),
+                );
+              },
             ),
-            onTap: _launchURL,
-          ),
-          ListTile(
-            leading: Icon(Icons.share),
-            title: Text(
-              'යාලුවන්ට කියන්න',
-              style: TextStyle(fontSize: 20),
+            ListTile(
+              leading: Icon(Icons.swap_vertical_circle,
+                  color: Colors.orange.shade300),
+              title: Text(
+                'වෙබ් පිටුව',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              onTap: _launchURL,
             ),
-            onTap: () {
-              Share.share(
-                  'මාවතේ ගීතය ඇප් එක ඩවුන්ලෝඩ් කරගන්න ක්ලික් කරන්න - https://example.com');
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.message),
-            title: Text(
-              'අපට කියන්න',
-              style: TextStyle(fontSize: 20),
+            ListTile(
+              leading: Icon(Icons.share, color: Colors.orange.shade300),
+              title: Text(
+                'යාලුවන්ට කියන්න',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              onTap: () {
+                Share.share(
+                    'මාවතේ ගීතය ඇප් එක ඩවුන්ලෝඩ් කරගන්න ක්ලික් කරන්න - https://example.com');
+              },
             ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => contact(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.code),
-            title: Text(
-              'About Developer',
-              style: TextStyle(fontSize: 20),
+            ListTile(
+              leading: Icon(Icons.message, color: Colors.orange.shade300),
+              title: Text(
+                'අපට කියන්න',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => contact(),
+                  ),
+                );
+              },
             ),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-        ],
+            ListTile(
+              leading: Icon(
+                Icons.code,
+                color: Colors.orange.shade300,
+              ),
+              title: Text(
+                'About Developer',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

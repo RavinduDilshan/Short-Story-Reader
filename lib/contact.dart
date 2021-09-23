@@ -23,38 +23,40 @@ class contact extends StatelessWidget {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: appBar,
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'නම',
-              border: OutlineInputBorder(),
+      body: Center(
+        child: ListView(
+          
+          padding: EdgeInsets.all(16),
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'නම',
+                border: OutlineInputBorder(),
+              ),
             ),
-          ),
-          SizedBox(height: 32),
-          TextField(
-            decoration: InputDecoration(
-              
-              labelText: 'ඔබේ අදහස්',
-              border: OutlineInputBorder(),
+            SizedBox(height: 32),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'ඔබේ අදහස්',
+                border: OutlineInputBorder(),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 32,
-          ),
-          RaisedButton(
-            child: Text(
-              "යවන්න",
-              style: TextStyle(fontSize: 20),
+            SizedBox(
+              height: 32,
             ),
-            onPressed: () {},
-            color: Colors.blue,
-            textColor: Colors.white,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.grey,
-          )
-        ],
+            RaisedButton(
+              child: Text(
+                "යවන්න",
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {},
+              color: Colors.blue,
+              textColor: Colors.white,
+              padding: EdgeInsets.all(8.0),
+              splashColor: Colors.grey,
+            )
+          ],
+        ),
       ),
     );
   }

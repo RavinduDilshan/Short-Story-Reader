@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import './home.dart';
 import 'bookmarks.dart';
@@ -12,14 +11,9 @@ class MyApp extends StatelessWidget {
       title: 'Book App',
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
         platform: TargetPlatform.iOS,
       ),
       home: Home(),
-
-
-      
-
     );
   }
 }

@@ -93,7 +93,7 @@ class authors extends StatelessWidget {
                       right: 16,
                       left: 16,
                       child: Text(
-                        "lahiru.s.karunarathna@gmail.com",
+                        "shammijayathilaka96@gmail.com",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,

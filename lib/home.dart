@@ -11,12 +11,31 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     //app bar
     final appBar = AppBar(
+      iconTheme: IconThemeData(color: Colors.orange.shade500),
+      flexibleSpace: Image(
+        image: AssetImage('res/0.jpg'),
+        fit: BoxFit.cover,
+      ),
       elevation: .5,
       // leading: IconButton(
       //   icon: Icon(Icons.menu),
       //   onPressed:(){}
       // ),
-      title: Text('මාවතේ ගීතය'),
+      title: Stack(children: [
+        Text(
+          'මාවතේ ගීතය',
+          style: TextStyle(
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 3
+              ..color = Colors.orange[400],
+          ),
+        ),
+        Text(
+          'මාවතේ ගීතය',
+          style: TextStyle(color: Colors.grey.shade800),
+        ),
+      ]),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.search),
@@ -97,7 +116,6 @@ class Home extends StatelessWidget {
               }
             },
           ),
-        
         ));
   }
 }
