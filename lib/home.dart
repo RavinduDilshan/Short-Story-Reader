@@ -101,7 +101,9 @@ class Home extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircularProgressIndicator(),
+                      CircularProgressIndicator(
+                        color: Colors.orange,
+                      ),
                       Text(
                         "මදක් රැදීසිටින්න...",
                         style: TextStyle(

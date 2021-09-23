@@ -44,7 +44,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text(
                 'ප්‍රධාන පිටුව',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.orange),
               ),
               onTap: () {
                 // Update the state of the app
@@ -79,7 +79,7 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.person, color: Colors.orange.shade300),
               title: Text(
                 'ලේඛක මඩුල්ල',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.orange),
               ),
               onTap: () {
                 // Update the state of the app
@@ -98,7 +98,7 @@ class MyDrawer extends StatelessWidget {
                   color: Colors.orange.shade300),
               title: Text(
                 'වෙබ් පිටුව',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.orange),
               ),
               onTap: _launchURL,
             ),
@@ -106,7 +106,7 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.share, color: Colors.orange.shade300),
               title: Text(
                 'යාලුවන්ට කියන්න',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.orange),
               ),
               onTap: () {
                 Share.share(
@@ -117,7 +117,7 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.message, color: Colors.orange.shade300),
               title: Text(
                 'අපට කියන්න',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.orange),
               ),
               onTap: () {
                 Navigator.of(context).push(
@@ -134,7 +134,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text(
                 'About Developer',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.orange),
               ),
               onTap: () {
                 // Update the state of the app

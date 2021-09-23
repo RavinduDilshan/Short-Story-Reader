@@ -28,8 +28,31 @@ class PostDetail extends StatelessWidget {
         );
 
     final appBar = AppBar(
+      iconTheme: IconThemeData(color: Colors.orange.shade500),
+      flexibleSpace: Image(
+        image: AssetImage('res/0.jpg'),
+        fit: BoxFit.cover,
+      ),
       elevation: .5,
-      title: Text('මාවතේ ගීතය'),
+      // leading: IconButton(
+      //   icon: Icon(Icons.menu),
+      //   onPressed:(){}
+      // ),
+      title: Stack(children: [
+        Text(
+          'මාවතේ ගීතය',
+          style: TextStyle(
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 3
+              ..color = Colors.orange[400],
+          ),
+        ),
+        Text(
+          'මාවතේ ගීතය',
+          style: TextStyle(color: Colors.grey.shade800),
+        ),
+      ]),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.search),
@@ -62,10 +85,13 @@ class PostDetail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         text(post.title,
-            size: 16, isBold: true, padding: EdgeInsets.only(top: 16.0)),
+            color: Colors.white,
+            size: 16,
+            isBold: true,
+            padding: EdgeInsets.only(top: 16.0)),
         text(
           'by ${post.author}',
-          color: Colors.black54,
+          color: Colors.white70,
           size: 12,
           padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
         ),
@@ -76,30 +102,32 @@ class PostDetail extends StatelessWidget {
             //   isBold: true,
             //   padding: EdgeInsets.only(right: 8.0),
             // ),
-            RatingBar(rating: post.rating)
+            RatingBar(
+              rating: post.rating,
+              color: Colors.white,
+            )
           ],
         ),
         SizedBox(height: 32.0),
-        Material(
-          borderRadius: BorderRadius.circular(20.0),
-          shadowColor: Colors.blue.shade200,
-          elevation: 5.0,
-          child: MaterialButton(
-            onPressed: () async {
-             
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString('postid', post.id.toString());
-            },
-            minWidth: 160.0,
-            color: Colors.blue,
-            child: text('පසුවට කියවන්න', color: Colors.white, size: 13),
+        FlatButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+              side: BorderSide(color: Colors.red)),
+          child: Text(
+            'පසුවට කියවන්න',
+            style: TextStyle(fontSize: 15.0),
           ),
-        )
+          color: Colors.orange,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
       ],
     );
 
     final topContent = Container(
-      color: Theme.of(context).primaryColor,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("res/containerBG.jpg"), fit: BoxFit.cover)),
       padding: EdgeInsets.only(bottom: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,12 +140,16 @@ class PostDetail extends StatelessWidget {
 
     ///scrolling text description
     final bottomContent = Container(
-      height: 420.0,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("res/containerBG.jpg"), fit: BoxFit.cover)),
+      height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Text(
           post.story,
-          style: TextStyle(fontSize: 13.0, height: 1.5),
+          style: TextStyle(fontSize: 17.0, height: 1.5, color: Colors.white),
         ),
       ),
     );
@@ -125,7 +157,7 @@ class PostDetail extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: Column(
-        children: <Widget>[topContent, bottomContent],
+        children: <Widget>[topContent, Expanded(child: bottomContent)],
       ),
     );
   }
