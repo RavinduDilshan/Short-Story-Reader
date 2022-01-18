@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sensor_app/drawer.dart';
+import 'package:sensor_app/providers/favorite_story_provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
-  final _favoriteList = [
-    {'title': 'story1', 'id': 1},
-    {'title': 'story2', 'id': 2},
-    {'title': 'story3', 'id': 3},
-    // {'title': 'story1', 'id': 1},
-    // {'title': 'story2', 'id': 2},
-    // {'title': 'story3', 'id': 3},
-    // {'title': 'story1', 'id': 1},
-    // {'title': 'story2', 'id': 2},
-    // {'title': 'story3', 'id': 3},
-    // {'title': 'story1', 'id': 1},
-    // {'title': 'story2', 'id': 2},
-    // {'title': 'story3', 'id': 3},
-  ];
-
   final appBar = AppBar(
     iconTheme: IconThemeData(color: Colors.orange.shade500),
     flexibleSpace: Image(
@@ -61,27 +48,29 @@ class FavoriteScreen extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
-        child: _favoriteList.length == 0
-            ? Center(
-                child: Text(
-                  'ප්‍රියතම කතා නොමැත.',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-              )
-            : ListView.builder(
-                itemBuilder: (ctx, i) => Card(
-                  elevation: 4,
-                  child: ListTile(
-                    leading: Icon(Icons.bookmark),
-                    title: Text(_favoriteList[i]['title']),
-                    trailing: Icon(Icons.arrow_forward_ios_sharp),
-                  ),
-                ),
-                itemCount: _favoriteList.length,
+        child: Consumer<FavoriteStories>(
+            child: Center(
+              child: Text(
+                'ප්‍රියතම කතා නොමැත.',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
+            ),
+            builder: (context, story, ch) => story.getFavoriteStorie.length <= 0
+                ? ch
+                : ListView.builder(
+                    itemBuilder: (ctx, i) => Card(
+                      elevation: 4,
+                      child: ListTile(
+                        leading: Icon(Icons.bookmark),
+                        title: Text(story.getFavoriteStorie[i].title),
+                        trailing: Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    itemCount: story.getFavoriteStorie.length,
+                  )),
       ),
     );
   }

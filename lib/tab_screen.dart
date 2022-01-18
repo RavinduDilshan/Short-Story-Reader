@@ -3,6 +3,9 @@ import 'package:sensor_app/drawer.dart';
 import 'package:sensor_app/favorite_screen.dart';
 import 'package:sensor_app/home.dart';
 
+import 'package:provider/provider.dart';
+import 'package:sensor_app/providers/favorite_story_provider.dart';
+
 class TabScreen extends StatefulWidget {
   @override
   _TabScreenState createState() => _TabScreenState();
@@ -20,7 +23,10 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pageSelected == 0 ? Home() : FavoriteScreen(),
+      body: _pageSelected == 0
+          ? Home()
+          : ChangeNotifierProvider.value(
+              value: FavoriteStories(), child: FavoriteScreen()),
       bottomNavigationBar: BottomNavigationBar(
           // selectedItemColor: Colors.grey,
           // unselectedItemColor: Colors.white,
