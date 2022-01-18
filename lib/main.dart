@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sensor_app/tab_screen.dart';
 import './home.dart';
 import 'bookmarks.dart';
 
-void main() => runApp(new MyApp());
+void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -11,9 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Book App',
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        platform: TargetPlatform.iOS,
+        accentColor: Colors.deepOrange,
+        platform: TargetPlatform.android,
       ),
-      home: Home(),
+      home: TabScreen(),
     );
   }
 }

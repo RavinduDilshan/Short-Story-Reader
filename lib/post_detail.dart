@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import './posts_model.dart';
 import 'package:flutter/material.dart';
 import 'rating_bar.dart';
@@ -13,7 +15,7 @@ class PostDetail extends StatelessWidget {
     ///create text widget
     text(String data,
             {Color color = Colors.black87,
-            num size = 14,
+            num size = 15,
             EdgeInsetsGeometry padding = EdgeInsets.zero,
             bool isBold = false}) =>
         Padding(
@@ -30,7 +32,7 @@ class PostDetail extends StatelessWidget {
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
       flexibleSpace: Image(
-        image: AssetImage('res/0.jpg'),
+        image: AssetImage('res/containerBG.jpg'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
@@ -53,12 +55,12 @@ class PostDetail extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800),
         ),
       ]),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {},
-        )
-      ],
+      // actions: <Widget>[
+      //   IconButton(
+      //     icon: Icon(Icons.search),
+      //     onPressed: () {},
+      //   )
+      // ],
     );
 
     final topLeft = Column(
@@ -83,44 +85,51 @@ class PostDetail extends StatelessWidget {
     ///detail top right
     final topRight = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         text(post.title,
             color: Colors.white,
-            size: 16,
+            size: 25,
             isBold: true,
             padding: EdgeInsets.only(top: 16.0)),
         text(
-          'by ${post.author}',
+          'By ${post.author}',
           color: Colors.white70,
-          size: 12,
+          size: 15,
           padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
         ),
-        Row(
-          children: <Widget>[
-            // text(
-            //   book.price,
-            //   isBold: true,
-            //   padding: EdgeInsets.only(right: 8.0),
-            // ),
-            RatingBar(
-              rating: post.rating,
-              color: Colors.white,
-            )
-          ],
-        ),
-        SizedBox(height: 32.0),
-        FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
-              side: BorderSide(color: Colors.red)),
-          child: Text(
-            'පසුවට කියවන්න',
-            style: TextStyle(fontSize: 15.0),
-          ),
-          color: Colors.orange,
-          textColor: Colors.white,
-          onPressed: () {},
-        ),
+        RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.favorite),
+            label: Text('ප්‍රියතම ලැයිස්තුවට'),
+            color: Colors.orange[400],
+            textColor: Colors.white)
+        // Row(
+        //   children: <Widget>[
+        //     // text(
+        //     //   book.price,
+        //     //   isBold: true,
+        //     //   padding: EdgeInsets.only(right: 8.0),
+        //     // ),
+        //     // RatingBar(
+        //     //   rating: post.rating,
+        //     //   color: Colors.white,
+        //     // )
+        //   ],
+        // ),
+        // SizedBox(height: 32.0),
+        // FlatButton(
+        //   shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(18.0),
+        //       side: BorderSide(color: Colors.red)),
+        //   child: Text(
+        //     'පසුවට කියවන්න',
+        //     style: TextStyle(fontSize: 15.0),
+        //   ),
+        //   color: Colors.orange,
+        //   textColor: Colors.white,
+        //   onPressed: () {},
+        // ),
       ],
     );
 
@@ -156,8 +165,14 @@ class PostDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: appBar,
-      body: Column(
-        children: <Widget>[topContent, Expanded(child: bottomContent)],
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            if (MediaQuery.of(context).orientation == Orientation.portrait)
+              topContent,
+            Expanded(child: bottomContent)
+          ],
+        ),
       ),
     );
   }

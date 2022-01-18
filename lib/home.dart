@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
       flexibleSpace: Image(
-        image: AssetImage('res/0.jpg'),
+        image: AssetImage('res/containerBG.jpg'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
@@ -25,6 +25,7 @@ class Home extends StatelessWidget {
         Text(
           'මාවතේ ගීතය',
           style: TextStyle(
+            fontFamily: 'sara',
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 3
@@ -33,15 +34,15 @@ class Home extends StatelessWidget {
         ),
         Text(
           'මාවතේ ගීතය',
-          style: TextStyle(color: Colors.grey.shade800),
+          style: TextStyle(color: Colors.grey.shade800, fontFamily: 'sara'),
         ),
       ]),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {},
-        )
-      ],
+      // actions: <Widget>[
+      //   IconButton(
+      //     icon: Icon(Icons.search),
+      //     onPressed: () {},
+      //   )
+      // ],
     );
 
     createTile(Post post) => Hero(

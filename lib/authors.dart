@@ -8,7 +8,7 @@ class authors extends StatelessWidget {
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
       flexibleSpace: Image(
-        image: AssetImage('res/0.jpg'),
+        image: AssetImage('res/containerBG.jpg'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
@@ -31,12 +31,12 @@ class authors extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800),
         ),
       ]),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {},
-        )
-      ],
+      // actions: <Widget>[
+      //   IconButton(
+      //     icon: Icon(Icons.search),
+      //     onPressed: () {},
+      //   )
+      // ],
     );
 
     return Scaffold(
@@ -48,81 +48,87 @@ class authors extends StatelessWidget {
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Container(
-            width: double.infinity,
-            child: Card(
-              elevation: 10,
-              child: Stack(
-                children: [
-                  Ink.image(
-                    image: AssetImage('res/lahiru.jpeg'),
-                    height: 250,
-                    fit: BoxFit.cover,
-                  ),
-                  Positioned(
-                    bottom: 16,
-                    right: 16,
-                    left: 16,
-                    child: Text(
-                      "ලහිරු සම්පත් කරුනාරත්න",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange.shade400,
-                          fontSize: 24),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: Container(
+              width: double.infinity,
+              child: Card(
+                elevation: 10,
+                child: Stack(
+                  children: [
+                    Ink.image(
+                      image: AssetImage('res/lahiru.jpeg'),
+                      height: 250,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  Positioned(
-                    bottom: 3,
-                    right: 16,
-                    left: 16,
-                    child: Text(
-                      "lahiru.s.karunarathna@gmail.com",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange.shade400,
-                          fontSize: 15),
+                    Positioned(
+                      bottom: 16,
+                      right: 16,
+                      left: 16,
+                      child: Text(
+                        "ලහිරු සම්පත් කරුණාරත්න",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20),
+                      ),
                     ),
-                  )
-                ],
+                    Positioned(
+                      bottom: 3,
+                      right: 16,
+                      left: 16,
+                      child: Text(
+                        "lahiru.s.karunarathna@gmail.com",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 15),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            child: Card(
-              elevation: 10,
-              child: Stack(
-                children: [
-                  Ink.image(
-                    image: AssetImage('res/shammi.jpg'),
-                    height: 250,
-                    fit: BoxFit.cover,
-                  ),
-                  Positioned(
-                    bottom: 16,
-                    right: 16,
-                    left: 16,
-                    child: Text(
-                      "ශම්මි මධුමාධව ඡයතිලක",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange.shade400,
-                          fontSize: 24),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: Container(
+              width: double.infinity,
+              child: Card(
+                elevation: 10,
+                child: Stack(
+                  children: [
+                    Ink.image(
+                      image: AssetImage('res/shammi.jpg'),
+                      height: 250,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  Positioned(
-                    bottom: 3,
-                    right: 16,
-                    left: 16,
-                    child: Text(
-                      "shammijayathilaka96@gmail.com",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange.shade400,
-                          fontSize: 15),
+                    Positioned(
+                      bottom: 16,
+                      right: 16,
+                      left: 16,
+                      child: Text(
+                        "ශම්මි මධුමාධව ඡයතිලක",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20),
+                      ),
                     ),
-                  )
-                ],
+                    Positioned(
+                      bottom: 3,
+                      right: 16,
+                      left: 16,
+                      child: Text(
+                        "shammijayathilaka96@gmail.com",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 15),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

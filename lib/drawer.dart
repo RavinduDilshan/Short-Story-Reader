@@ -40,17 +40,18 @@ class MyDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(
                 Icons.home,
-                color: Colors.orange.shade300,
+                color: Colors.deepOrange,
               ),
               title: Text(
                 'ප්‍රධාන පිටුව',
-                style: TextStyle(fontSize: 20, color: Colors.orange),
+                style: TextStyle(
+                    fontSize: 17, color: Colors.orange, fontFamily: 'sara'),
               ),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => Home(),
                   ),
@@ -76,17 +77,17 @@ class MyDrawer extends StatelessWidget {
             //   },
             // ),
             ListTile(
-              leading: Icon(Icons.person, color: Colors.orange.shade300),
+              leading: Icon(Icons.person, color: Colors.deepOrange),
               title: Text(
                 'ලේඛක මඩුල්ල',
-                style: TextStyle(fontSize: 20, color: Colors.orange),
+                style: TextStyle(fontSize: 17, color: Colors.orange),
               ),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 // Navigator.pop(context);
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => authors(),
                   ),
@@ -94,19 +95,19 @@ class MyDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.swap_vertical_circle,
-                  color: Colors.orange.shade300),
+              leading:
+                  Icon(Icons.swap_vertical_circle, color: Colors.deepOrange),
               title: Text(
                 'වෙබ් පිටුව',
-                style: TextStyle(fontSize: 20, color: Colors.orange),
+                style: TextStyle(fontSize: 17, color: Colors.orange),
               ),
               onTap: _launchURL,
             ),
             ListTile(
-              leading: Icon(Icons.share, color: Colors.orange.shade300),
+              leading: Icon(Icons.share, color: Colors.deepOrange),
               title: Text(
                 'යාලුවන්ට කියන්න',
-                style: TextStyle(fontSize: 20, color: Colors.orange),
+                style: TextStyle(fontSize: 17, color: Colors.orange),
               ),
               onTap: () {
                 Share.share(
@@ -114,35 +115,36 @@ class MyDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.message, color: Colors.orange.shade300),
+              leading: Icon(Icons.message, color: Colors.deepOrange),
               title: Text(
                 'අපට කියන්න',
-                style: TextStyle(fontSize: 20, color: Colors.orange),
+                style: TextStyle(
+                    fontSize: 17, color: Colors.orange, fontFamily: 'sara'),
               ),
               onTap: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => contact(),
                   ),
                 );
               },
             ),
-            ListTile(
-              leading: Icon(
-                Icons.code,
-                color: Colors.orange.shade300,
-              ),
-              title: Text(
-                'About Developer',
-                style: TextStyle(fontSize: 20, color: Colors.orange),
-              ),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.code,
+            //     color: Colors.deepOrange,
+            //   ),
+            //   title: Text(
+            //     'About Developer',
+            //     style: TextStyle(fontSize: 17, color: Colors.orange),
+            //   ),
+            //   onTap: () {
+            //     // Update the state of the app
+            //     // ...
+            //     // Then close the drawer
+            //     Navigator.pop(context);
+            //   },
+            // ),
           ],
         ),
       ),
