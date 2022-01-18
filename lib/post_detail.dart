@@ -1,4 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:sensor_app/providers/favorite_story_provider.dart';
 
 import './posts_model.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +101,10 @@ class PostDetail extends StatelessWidget {
           padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
         ),
         RaisedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<FavoriteStories>(context, listen: false)
+                  .addFavorite(post.title, post.id);
+            },
             icon: Icon(Icons.favorite),
             label: Text('ප්‍රියතම ලැයිස්තුවට'),
             color: Colors.orange[400],

@@ -25,8 +25,7 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       body: _pageSelected == 0
           ? Home()
-          : ChangeNotifierProvider.value(
-              value: FavoriteStories(), child: FavoriteScreen()),
+          : FavoriteScreen(),
       bottomNavigationBar: BottomNavigationBar(
           // selectedItemColor: Colors.grey,
           // unselectedItemColor: Colors.white,
