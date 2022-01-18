@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sensor_app/authors.dart';
+import 'package:sensor_app/tab_screen.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -53,7 +54,7 @@ class MyDrawer extends StatelessWidget {
                 // Then close the drawer
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => Home(),
+                    builder: (context) => TabScreen(),
                   ),
                 );
               },
