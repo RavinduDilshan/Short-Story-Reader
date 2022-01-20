@@ -48,29 +48,51 @@ class FavoriteScreen extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
-        child: Consumer<FavoriteStories>(
-            child: Center(
-              child: Text(
-                'ප්‍රියතම කතා නොමැත.',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            builder: (context, story, ch) => story.getFavoriteStorie.length <= 0
-                ? ch
-                : ListView.builder(
-                    itemBuilder: (ctx, i) => Card(
-                      elevation: 4,
-                      child: ListTile(
-                        leading: Icon(Icons.bookmark),
-                        title: Text(story.getFavoriteStorie[i].title),
-                        trailing: Icon(Icons.arrow_forward_ios_sharp),
-                      ),
+        child: FutureBuilder(
+          future: Provider.of<FavoriteStories>(context, listen: false)
+              .fetchFavorites(),
+          builder: (ctx, snapshot) => snapshot.connectionState ==
+                  ConnectionState.waiting
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Consumer<FavoriteStories>(
+                  child: Center(
+                    child: Text(
+                      'ප්‍රියතම කතා නොමැත',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    itemCount: story.getFavoriteStorie.length,
-                  )),
+                  ),
+                  builder: (context, story, ch) => story
+                              .getFavoriteStorie.length <=
+                          0
+                      ? ch
+                      : ListView.builder(
+                          itemBuilder: (ctx, i) => Card(
+                            elevation: 4,
+                            child: ListTile(
+                              leading: Icon(Icons.bookmark),
+                              subtitle: Text(story.getFavoriteStorie[i].author),
+                              title: Text(story.getFavoriteStorie[i].title),
+                              // trailing: Icon(Icons.arrow_forward_ios_sharp),
+                              trailing: Wrap(
+                                spacing: 12, // space between two icons
+                                children: <Widget>[
+                                  GestureDetector(
+                                    child: Icon(Icons.delete),
+                                    onTap: () {},
+                                  ), // icon-1
+                                  GestureDetector(
+                                    child: Icon(Icons.arrow_forward_ios_sharp),
+                                    onTap: () {},
+                                  ), // icon-2
+                                ],
+                              ),
+                            ),
+                          ),
+                          itemCount: story.getFavoriteStorie.length,
+                        )),
+        ),
       ),
     );
   }

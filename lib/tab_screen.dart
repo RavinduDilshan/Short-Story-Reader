@@ -12,6 +12,8 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
+
+    
   var _pageSelected = 0;
 
   void _selectPage(int index) {
@@ -23,15 +25,12 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pageSelected == 0
-          ? Home()
-          : FavoriteScreen(),
+      body: _pageSelected == 0 ? Home() : FavoriteScreen(),
       bottomNavigationBar: BottomNavigationBar(
           // selectedItemColor: Colors.grey,
           // unselectedItemColor: Colors.white,
           currentIndex: _pageSelected,
           type: BottomNavigationBarType.shifting,
-          backgroundColor: Colors.orange[400],
           onTap: _selectPage,
           items: [
             BottomNavigationBarItem(
@@ -45,6 +44,7 @@ class _TabScreenState extends State<TabScreen> {
                   style: TextStyle(color: Colors.white),
                 )),
             BottomNavigationBarItem(
+                backgroundColor: Colors.grey,
                 icon: Icon(
                   Icons.star,
                   color: Colors.white,

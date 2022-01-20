@@ -1,6 +1,7 @@
 class FavoriteStory {
   String title;
-  int id;
+  String author;
+  String id;
 
-  FavoriteStory(this.title,this.id);
+  FavoriteStory({this.title, this.id, this.author});
 }

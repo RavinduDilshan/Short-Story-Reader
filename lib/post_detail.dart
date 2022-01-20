@@ -103,7 +103,7 @@ class PostDetail extends StatelessWidget {
         RaisedButton.icon(
             onPressed: () {
               Provider.of<FavoriteStories>(context, listen: false)
-                  .addFavorite(post.title, post.id);
+                  .addFavorite(post.title, post.id.toString(), post.author);
             },
             icon: Icon(Icons.favorite),
             label: Text('ප්‍රියතම ලැයිස්තුවට'),

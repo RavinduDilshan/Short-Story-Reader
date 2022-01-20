@@ -7,6 +7,7 @@ import './post_detail.dart';
 
 class Home extends StatelessWidget {
   final HttpService httpService = HttpService();
+
   @override
   Widget build(BuildContext context) {
     //app bar
@@ -81,21 +82,24 @@ class Home extends StatelessWidget {
                 (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
               if (snapshot.hasData) {
                 List<Post> posts = snapshot.data;
-                return CustomScrollView(
-                  primary: false,
-                  slivers: <Widget>[
-                    SliverPadding(
-                      padding: EdgeInsets.all(16.0),
-                      sliver: SliverGrid.count(
-                        childAspectRatio: 2 / 3,
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 20.0,
-                        crossAxisSpacing: 20.0,
-                        children:
-                            posts.map((post) => createTile(post)).toList(),
-                      ),
-                    )
-                  ],
+
+                return Scrollbar(
+                  child: CustomScrollView(
+                    primary: false,
+                    slivers: <Widget>[
+                      SliverPadding(
+                        padding: EdgeInsets.all(16.0),
+                        sliver: SliverGrid.count(
+                          childAspectRatio: 2 / 3,
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 20.0,
+                          crossAxisSpacing: 20.0,
+                          children:
+                              posts.map((post) => createTile(post)).toList(),
+                        ),
+                      )
+                    ],
+                  ),
                 );
               } else {
                 return Center(
