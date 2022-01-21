@@ -9,9 +9,8 @@ class FavoriteStories with ChangeNotifier {
     return [..._favoriteList];
   }
 
-  void addFavorite(String title, String id, String author) {
-    var _FavoriteItem =
-        FavoriteStory(title: title, id: id, author: author);
+  Future<void> addFavorite(String title, String id, String author) async {
+    var _FavoriteItem = FavoriteStory(title: title, id: id, author: author);
     _favoriteList.add(_FavoriteItem);
 
     DbHelper.insert('favorite_stories', {
@@ -32,5 +31,21 @@ class FavoriteStories with ChangeNotifier {
         .toList();
 
     notifyListeners();
+  }
+
+  bool checkFavorite(String id) {
+    var isFavorite = _favoriteList.where((element) => element.id == id);
+    if (isFavorite.length == 0) {
+      return false;
+    }
+    return true;
+  }
+
+  Future<void> deleteFavorite(String id) async {
+    
+    _favoriteList.removeWhere((element) => element.id == id);
+
+    notifyListeners();
+    DbHelper.delete('favorite_stories', id);
   }
 }

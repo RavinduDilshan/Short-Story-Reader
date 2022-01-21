@@ -80,7 +80,13 @@ class FavoriteScreen extends StatelessWidget {
                                 children: <Widget>[
                                   GestureDetector(
                                     child: Icon(Icons.delete),
-                                    onTap: () {},
+                                    onTap: () async {
+                                      await Provider.of<FavoriteStories>(
+                                              context,
+                                              listen: false)
+                                          .deleteFavorite(
+                                              story.getFavoriteStorie[i].id);
+                                    },
                                   ), // icon-1
                                   GestureDetector(
                                     child: Icon(Icons.arrow_forward_ios_sharp),

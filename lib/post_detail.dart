@@ -14,6 +14,19 @@ class PostDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isFavorite =
+        Provider.of<FavoriteStories>(context).checkFavorite(post.id.toString());
+    print(isFavorite);
+
+    const snackBar = SnackBar(
+      duration: Duration(seconds: 2),
+      content: Text(
+        'ප්‍රියතම ලැයිස්තුවට එක් කරන ලදී',
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: Colors.orange,
+    );
+
     ///create text widget
     text(String data,
             {Color color = Colors.black87,
@@ -101,12 +114,18 @@ class PostDetail extends StatelessWidget {
           padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
         ),
         RaisedButton.icon(
-            onPressed: () {
-              Provider.of<FavoriteStories>(context, listen: false)
-                  .addFavorite(post.title, post.id.toString(), post.author);
-            },
+            onPressed: !isFavorite
+                ? () async {
+                    await Provider.of<FavoriteStories>(context, listen: false)
+                        .addFavorite(
+                            post.title, post.id.toString(), post.author);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                : () {},
             icon: Icon(Icons.favorite),
-            label: Text('ප්‍රියතම ලැයිස්තුවට'),
+            label: !isFavorite
+                ? Text('ප්‍රියතම ලැයිස්තුවට')
+                : Text('ප්‍රියතම ලැස්තුවේ පවතී'),
             color: Colors.orange[400],
             textColor: Colors.white)
         // Row(

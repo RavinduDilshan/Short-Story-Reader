@@ -20,4 +20,9 @@ class DbHelper {
     final db = await DbHelper.database();
     return db.query(table);
   }
+
+  static Future<void> delete(String table,String id) async {
+    final db = await DbHelper.database();
+    db.rawDelete('DELETE FROM $table WHERE id = $id');
+  }
 }
