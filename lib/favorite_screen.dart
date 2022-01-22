@@ -79,15 +79,46 @@ class FavoriteScreen extends StatelessWidget {
                                 spacing: 12, // space between two icons
                                 children: <Widget>[
                                   GestureDetector(
-                                    child: Icon(Icons.delete),
-                                    onTap: () async {
-                                      await Provider.of<FavoriteStories>(
-                                              context,
-                                              listen: false)
-                                          .deleteFavorite(
-                                              story.getFavoriteStorie[i].id);
-                                    },
-                                  ), // icon-1
+                                      child: Icon(Icons.delete),
+                                      // onTap: () async {
+                                      //   await Provider.of<FavoriteStories>(
+                                      //           context,
+                                      //           listen: false)
+                                      //       .deleteFavorite(
+                                      //           story.getFavoriteStorie[i].id);
+                                      // },
+                                      onTap: () => showDialog<String>(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                AlertDialog(
+                                              title: const Text(
+                                                  'ඉවත් කිරීම තහවුරු කරන්න'),
+                                              content: const Text(
+                                                  'ප්‍රියතම ලැයිස්තුවෙන් ඉවත් කරන්න?'),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          context, 'Cancel'),
+                                                  child: const Text('නෑ'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    await Provider.of<
+                                                                FavoriteStories>(
+                                                            context,
+                                                            listen: false)
+                                                        .deleteFavorite(story
+                                                            .getFavoriteStorie[
+                                                                i]
+                                                            .id);
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('ඔව්'),
+                                                ),
+                                              ],
+                                            ),
+                                          )), // icon-1
                                   GestureDetector(
                                     child: Icon(Icons.arrow_forward_ios_sharp),
                                     onTap: () {},
