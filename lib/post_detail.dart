@@ -241,7 +241,9 @@ class _PostDetailState extends State<PostDetail> {
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: widget.post == null
             ? Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.orange,
+                ),
               )
             : Column(
                 children: <Widget>[
