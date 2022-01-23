@@ -54,9 +54,7 @@ class Home extends StatelessWidget {
             child: InkWell(
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => PostDetail(
-                    post: post,
-                  ),
+                  builder: (context) => PostDetail(post.id),
                 ),
               ),
               child: Image(

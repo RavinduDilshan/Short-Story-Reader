@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:sensor_app/http_service.dart';
 import 'package:sensor_app/providers/favorite_story_provider.dart';
 
 import './posts_model.dart';
@@ -7,16 +8,43 @@ import 'package:flutter/material.dart';
 import 'rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PostDetail extends StatelessWidget {
-  final Post post;
+class PostDetail extends StatefulWidget {
+  Post post;
+  int storyId;
+  var isFavorite;
 
-  PostDetail({@required this.post});
+  PostDetail(this.storyId);
+
+  @override
+  _PostDetailState createState() => _PostDetailState();
+}
+
+class _PostDetailState extends State<PostDetail> {
+  @override
+  void initState() {
+    if (widget.storyId != null) {
+      print(widget.storyId);
+      _getStory(widget.storyId);
+    } else {
+      print('null is is');
+    }
+
+    super.initState();
+  }
+
+  Future<void> _getStory(int id) async {
+    var res = await HttpService().getStoryById(id);
+    setState(() {
+      widget.post = res;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    var isFavorite =
-        Provider.of<FavoriteStories>(context).checkFavorite(post.id.toString());
-    print(isFavorite);
+    if (widget.post != null) {
+      widget.isFavorite = Provider.of<FavoriteStories>(context)
+          .checkFavorite(widget.post.id.toString());
+    }
 
     const snackBar = SnackBar(
       duration: Duration(seconds: 2),
@@ -82,17 +110,21 @@ class PostDetail extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.all(16.0),
-          child: Hero(
-            tag: post.title,
-            child: Material(
-              elevation: 15.0,
-              shadowColor: Colors.yellow.shade900,
-              child: Image(
-                image: AssetImage(post.image),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          child: widget.post == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Hero(
+                  tag: widget.post.title,
+                  child: Material(
+                    elevation: 15.0,
+                    shadowColor: Colors.yellow.shade900,
+                    child: Image(
+                      image: AssetImage(widget.post.image),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
         ),
       ],
     );
@@ -101,60 +133,69 @@ class PostDetail extends StatelessWidget {
     final topRight = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        text(post.title,
-            color: Colors.white,
-            size: 25,
-            isBold: true,
-            padding: EdgeInsets.only(top: 16.0)),
-        text(
-          'By ${post.author}',
-          color: Colors.white70,
-          size: 15,
-          padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-        ),
-        RaisedButton.icon(
-            onPressed: !isFavorite
-                ? () async {
-                    await Provider.of<FavoriteStories>(context, listen: false)
-                        .addFavorite(
-                            post.title, post.id.toString(), post.author);
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                : () {},
-            icon: Icon(Icons.favorite),
-            label: !isFavorite
-                ? Text('ප්‍රියතම ලැයිස්තුවට')
-                : Text('ප්‍රියතම ලැස්තුවේ පවතී'),
-            color: Colors.orange[400],
-            textColor: Colors.white)
-        // Row(
-        //   children: <Widget>[
-        //     // text(
-        //     //   book.price,
-        //     //   isBold: true,
-        //     //   padding: EdgeInsets.only(right: 8.0),
-        //     // ),
-        //     // RatingBar(
-        //     //   rating: post.rating,
-        //     //   color: Colors.white,
-        //     // )
-        //   ],
-        // ),
-        // SizedBox(height: 32.0),
-        // FlatButton(
-        //   shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(18.0),
-        //       side: BorderSide(color: Colors.red)),
-        //   child: Text(
-        //     'පසුවට කියවන්න',
-        //     style: TextStyle(fontSize: 15.0),
-        //   ),
-        //   color: Colors.orange,
-        //   textColor: Colors.white,
-        //   onPressed: () {},
-        // ),
-      ],
+      children: widget.post == null
+          ? <Widget>[
+              Center(
+                child: CircularProgressIndicator(),
+              )
+            ]
+          : <Widget>[
+              text(widget.post.title,
+                  color: Colors.white,
+                  size: 25,
+                  isBold: true,
+                  padding: EdgeInsets.only(top: 16.0)),
+              text(
+                'By ${widget.post.author}',
+                color: Colors.white70,
+                size: 15,
+                padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+              ),
+              RaisedButton.icon(
+                  onPressed: !widget.isFavorite
+                      ? () async {
+                          await Provider.of<FavoriteStories>(context,
+                                  listen: false)
+                              .addFavorite(
+                                  widget.post.title,
+                                  widget.post.id.toString(),
+                                  widget.post.author);
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      : () {},
+                  icon: Icon(Icons.favorite),
+                  label: !widget.isFavorite
+                      ? Text('ප්‍රියතම ලැයිස්තුවට')
+                      : Text('ප්‍රියතම ලැස්තුවේ පවතී'),
+                  color: Colors.orange[400],
+                  textColor: Colors.white)
+              // Row(
+              //   children: <Widget>[
+              //     // text(
+              //     //   book.price,
+              //     //   isBold: true,
+              //     //   padding: EdgeInsets.only(right: 8.0),
+              //     // ),
+              //     // RatingBar(
+              //     //   rating: post.rating,
+              //     //   color: Colors.white,
+              //     // )
+              //   ],
+              // ),
+              // SizedBox(height: 32.0),
+              // FlatButton(
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(18.0),
+              //       side: BorderSide(color: Colors.red)),
+              //   child: Text(
+              //     'පසුවට කියවන්න',
+              //     style: TextStyle(fontSize: 15.0),
+              //   ),
+              //   color: Colors.orange,
+              //   textColor: Colors.white,
+              //   onPressed: () {},
+              // ),
+            ],
     );
 
     final topContent = Container(
@@ -180,23 +221,36 @@ class PostDetail extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
-        child: Text(
-          post.story,
-          style: TextStyle(fontSize: 17.0, height: 1.5, color: Colors.white),
-        ),
+        child: widget.post == null
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Text(
+                widget.post.story,
+                style:
+                    TextStyle(fontSize: 17.0, height: 1.5, color: Colors.white),
+              ),
       ),
     );
 
     return Scaffold(
       appBar: appBar,
       body: Container(
-        child: Column(
-          children: <Widget>[
-            if (MediaQuery.of(context).orientation == Orientation.portrait)
-              topContent,
-            Expanded(child: bottomContent)
-          ],
-        ),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
+        child: widget.post == null
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Column(
+                children: <Widget>[
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.portrait)
+                    topContent,
+                  Expanded(child: bottomContent)
+                ],
+              ),
       ),
     );
   }
