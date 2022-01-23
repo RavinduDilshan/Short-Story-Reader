@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sensor_app/drawer.dart';
+import 'package:sensor_app/post_detail.dart';
 import 'package:sensor_app/providers/favorite_story_provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -49,87 +50,101 @@ class FavoriteScreen extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: FutureBuilder(
-          future: Provider.of<FavoriteStories>(context, listen: false)
-              .fetchFavorites(),
-          builder: (ctx, snapshot) => snapshot.connectionState ==
-                  ConnectionState.waiting
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Consumer<FavoriteStories>(
-                  child: Center(
-                    child: Text(
-                      'ප්‍රියතම කතා නොමැත',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+            future: Provider.of<FavoriteStories>(context, listen: false)
+                .fetchFavorites(),
+            builder: (ctx, snapshot) => snapshot.connectionState ==
+                    ConnectionState.waiting
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Consumer<FavoriteStories>(
+                    child: Center(
+                      child: Text(
+                        'ප්‍රියතම කතා නොමැත',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
-                  ),
-                  builder: (context, story, ch) => story
-                              .getFavoriteStorie.length <=
-                          0
-                      ? ch
-                      : ListView.builder(
-                          itemBuilder: (ctx, i) => Card(
-                            elevation: 4,
-                            child: ListTile(
-                              leading: Icon(Icons.bookmark),
-                              subtitle: Text(story.getFavoriteStorie[i].author),
-                              title: Text(story.getFavoriteStorie[i].title),
-                              // trailing: Icon(Icons.arrow_forward_ios_sharp),
-                              trailing: Wrap(
-                                spacing: 12, // space between two icons
-                                children: <Widget>[
-                                  GestureDetector(
-                                      child: Icon(Icons.delete),
-                                      // onTap: () async {
-                                      //   await Provider.of<FavoriteStories>(
-                                      //           context,
-                                      //           listen: false)
-                                      //       .deleteFavorite(
-                                      //           story.getFavoriteStorie[i].id);
-                                      // },
-                                      onTap: () => showDialog<String>(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                AlertDialog(
-                                              title: const Text(
-                                                  'ඉවත් කිරීම තහවුරු කරන්න'),
-                                              content: const Text(
-                                                  'ප්‍රියතම ලැයිස්තුවෙන් ඉවත් කරන්න?'),
-                                              actions: <Widget>[
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          context, 'Cancel'),
-                                                  child: const Text('නෑ'),
+                    builder: (context, story, ch) => story
+                                .getFavoriteStorie.length <=
+                            0
+                        ? ch
+                        : ListView.builder(
+                            itemBuilder: (ctx, i) => GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => PostDetail(int.parse(
+                                        story.getFavoriteStorie[i].id)),
+                                  ),
+                                );
+                              },
+                              child: Card(
+                                elevation: 4,
+                                child: ListTile(
+                                  leading: Icon(Icons.bookmark),
+                                  subtitle:
+                                      Text(story.getFavoriteStorie[i].author),
+                                  title: Text(story.getFavoriteStorie[i].title),
+                                  // trailing: Icon(Icons.arrow_forward_ios_sharp),
+                                  trailing: Wrap(
+                                    spacing: 12, // space between two icons
+                                    children: <Widget>[
+                                      GestureDetector(
+                                          child: Icon(Icons.delete),
+                                          // onTap: () async {
+                                          //   await Provider.of<FavoriteStories>(
+                                          //           context,
+                                          //           listen: false)
+                                          //       .deleteFavorite(
+                                          //           story.getFavoriteStorie[i].id);
+                                          // },
+                                          onTap: () => showDialog<String>(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                  title: const Text(
+                                                      'ඉවත් කිරීම තහවුරු කරන්න'),
+                                                  content: const Text(
+                                                      'ප්‍රියතම ලැයිස්තුවෙන් ඉවත් කරන්න?'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(context,
+                                                              'Cancel'),
+                                                      child: const Text('නෑ'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () async {
+                                                        await Provider.of<
+                                                                    FavoriteStories>(
+                                                                context,
+                                                                listen: false)
+                                                            .deleteFavorite(story
+                                                                .getFavoriteStorie[
+                                                                    i]
+                                                                .id);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: const Text('ඔව්'),
+                                                    ),
+                                                  ],
                                                 ),
-                                                TextButton(
-                                                  onPressed: () async {
-                                                    await Provider.of<
-                                                                FavoriteStories>(
-                                                            context,
-                                                            listen: false)
-                                                        .deleteFavorite(story
-                                                            .getFavoriteStorie[
-                                                                i]
-                                                            .id);
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('ඔව්'),
-                                                ),
-                                              ],
-                                            ),
-                                          )), // icon-1
-                                  GestureDetector(
-                                    child: Icon(Icons.arrow_forward_ios_sharp),
-                                    onTap: () {},
-                                  ), // icon-2
-                                ],
+                                              )), // icon-1
+                                      GestureDetector(
+                                        child:
+                                            Icon(Icons.arrow_forward_ios_sharp),
+                                        onTap: () {},
+                                      ), // icon-2
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
+                            itemCount: story.getFavoriteStorie.length,
                           ),
-                          itemCount: story.getFavoriteStorie.length,
-                        )),
-        ),
+                  )),
       ),
     );
   }
