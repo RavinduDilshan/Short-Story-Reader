@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
             elevation: 15.0,
             shadowColor: Colors.yellow.shade900,
             child: InkWell(
-              onTap: () => Navigator.of(context).push(
+              onTap: () => Navigator.of(context, rootNavigator: true).push(
                 MaterialPageRoute(
                   builder: (context) => PostDetail(post.id),
                 ),

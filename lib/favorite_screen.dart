@@ -71,10 +71,13 @@ class FavoriteScreen extends StatelessWidget {
                         : ListView.builder(
                             itemBuilder: (ctx, i) => GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(
+                                Navigator.of(context, rootNavigator: true).push(
                                   MaterialPageRoute(
-                                    builder: (context) => PostDetail(int.parse(
-                                        story.getFavoriteStorie[i].id)),
+                                    builder: (
+                                      context,
+                                    ) =>
+                                        PostDetail(int.parse(
+                                            story.getFavoriteStorie[i].id)),
                                   ),
                                 );
                               },

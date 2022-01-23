@@ -28,6 +28,7 @@ class _TabScreenState extends State<TabScreen> {
     return CupertinoTabScaffold(
       // body: _pageSelected == 0 ? Home() : FavoriteScreen(),
       tabBar: CupertinoTabBar(
+       
         items: [
           BottomNavigationBarItem(
             title: Text('සියලුම කතා', style: TextStyle(fontSize: 12.0)),
