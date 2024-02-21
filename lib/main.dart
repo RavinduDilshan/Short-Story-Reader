@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:sensor_app/providers/favorite_story_provider.dart';
-import 'package:sensor_app/tab_screen.dart';
+import 'package:sinhala_short_stories/providers/favorite_story_provider.dart';
+import 'package:sinhala_short_stories/tab_screen.dart';
 import './home.dart';
 import 'bookmarks.dart';
 

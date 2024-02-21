@@ -1,4 +1,4 @@
-# sensor_app
+# fresh
 
 A new Flutter project.
 

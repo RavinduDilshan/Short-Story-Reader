@@ -1,4 +1,4 @@
-package com.example.sensor_app
+package com.example.fresh
 
 import io.flutter.embedding.android.FlutterActivity
 

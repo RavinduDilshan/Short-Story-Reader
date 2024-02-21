@@ -4,11 +4,11 @@ import 'package:http/http.dart';
 import './posts_model.dart';
 
 class HttpService {
-  final String postsURL =
-      "https://mawathe-geethaya-api.herokuapp.com/api/test/story";
+  final Uri _uri =
+      Uri.parse('https://mawathe-geethaya-api.herokuapp.com/api/test/story');
 
   Future<List<Post>> getPosts() async {
-    Response res = await get(postsURL);
+    Response res = await get(_uri);
 
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
@@ -26,8 +26,9 @@ class HttpService {
   }
 
   Future<Post> getStoryById(int id) async {
-    var url = "https://mawathe-geethaya-api.herokuapp.com/api/test/story/$id";
-    Response res = await get(url);
+    Uri _uri = Uri.parse(
+        'https://mawathe-geethaya-api.herokuapp.com/api/test/story/$id"');
+    Response res = await get(_uri);
     var data = json.decode(res.body);
     var finalDAta = data[0];
     Post story = Post(
@@ -37,7 +38,6 @@ class HttpService {
         image: finalDAta['image'],
         story: finalDAta['story'],
         title: finalDAta['title']);
-    
 
     return story;
   }

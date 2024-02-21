@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sensor_app/drawer.dart';
+import 'package:sinhala_short_stories/drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Bookmarks extends StatelessWidget {
@@ -14,8 +13,8 @@ class Bookmarks extends StatelessWidget {
   getBookmarks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState() {
-      postid = prefs.getString('postid');
-      print("post id getting"+postid);
+      postid = prefs.getString('postid') ?? '';
+      print("post id getting" + postid);
     }
   }
 
@@ -24,7 +23,7 @@ class Bookmarks extends StatelessWidget {
       print("inside getting");
       return Text(postid.toString());
     } else {
-      return Text("not getting");
+      return const Text("not getting");
     }
   }
 
@@ -36,10 +35,10 @@ class Bookmarks extends StatelessWidget {
       //   icon: Icon(Icons.menu),
       //   onPressed:(){}
       // ),
-      title: Text('සුරැකුම්'),
+      title: const Text('සුරැකුම්'),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
           onPressed: () {},
         )
       ],

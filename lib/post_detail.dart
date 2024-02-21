@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:sensor_app/http_service.dart';
-import 'package:sensor_app/providers/favorite_story_provider.dart';
+import 'package:sinhala_short_stories/http_service.dart';
+import 'package:sinhala_short_stories/providers/favorite_story_provider.dart';
 
 import './posts_model.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostDetail extends StatefulWidget {
-  Post post;
+  late Post post;
   int storyId;
   var isFavorite;
 
@@ -41,10 +41,8 @@ class _PostDetailState extends State<PostDetail> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.post != null) {
-      widget.isFavorite = Provider.of<FavoriteStories>(context)
-          .checkFavorite(widget.post.id.toString());
-    }
+    widget.isFavorite = Provider.of<FavoriteStories>(context)
+        .checkFavorite(widget.post.id.toString());
 
     const snackBar = SnackBar(
       duration: Duration(seconds: 2),
@@ -74,7 +72,7 @@ class _PostDetailState extends State<PostDetail> {
 
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
-      flexibleSpace: Image(
+      flexibleSpace: const Image(
         image: AssetImage('res/containerBG.jpg'),
         fit: BoxFit.cover,
       ),
@@ -90,7 +88,7 @@ class _PostDetailState extends State<PostDetail> {
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 3
-              ..color = Colors.orange[400],
+              ..color = Colors.orange,
           ),
         ),
         Text(
@@ -109,9 +107,9 @@ class _PostDetailState extends State<PostDetail> {
     final topLeft = Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: widget.post == null
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : Hero(
@@ -135,7 +133,7 @@ class _PostDetailState extends State<PostDetail> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: widget.post == null
           ? <Widget>[
-              Center(
+              const Center(
                 child: CircularProgressIndicator(),
               )
             ]
@@ -144,12 +142,12 @@ class _PostDetailState extends State<PostDetail> {
                   color: Colors.white,
                   size: 25,
                   isBold: true,
-                  padding: EdgeInsets.only(top: 16.0)),
+                  padding: const EdgeInsets.only(top: 16.0)),
               text(
                 'By ${widget.post.author}',
                 color: Colors.white70,
                 size: 15,
-                padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+                padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
               ),
               RaisedButton.icon(
                   onPressed: !widget.isFavorite
@@ -163,10 +161,10 @@ class _PostDetailState extends State<PostDetail> {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       : () {},
-                  icon: Icon(Icons.favorite),
+                  icon: const Icon(Icons.favorite),
                   label: !widget.isFavorite
-                      ? Text('ප්‍රියතම ලැයිස්තුවට')
-                      : Text('ප්‍රියතම ලැස්තුවේ පවතී'),
+                      ? const Text('ප්‍රියතම ලැයිස්තුවට')
+                      : const Text('ප්‍රියතම ලැස්තුවේ පවතී'),
                   color: Colors.orange[400],
                   textColor: Colors.white)
               // Row(
@@ -199,10 +197,10 @@ class _PostDetailState extends State<PostDetail> {
     );
 
     final topContent = Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("res/containerBG.jpg"), fit: BoxFit.cover)),
-      padding: EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -215,20 +213,20 @@ class _PostDetailState extends State<PostDetail> {
     ///scrolling text description
     final bottomContent = Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("res/containerBG.jpg"), fit: BoxFit.cover)),
       height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: widget.post == null
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : Text(
                 widget.post.story,
-                style:
-                    TextStyle(fontSize: 17.0, height: 1.5, color: Colors.white),
+                style: const TextStyle(
+                    fontSize: 17.0, height: 1.5, color: Colors.white),
               ),
       ),
     );
@@ -236,11 +234,11 @@ class _PostDetailState extends State<PostDetail> {
     return Scaffold(
       appBar: appBar,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: widget.post == null
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                   color: Colors.orange,
                 ),

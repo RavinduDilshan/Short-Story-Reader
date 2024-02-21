@@ -3,5 +3,5 @@ class FavoriteStory {
   String author;
   String id;
 
-  FavoriteStory({this.title, this.id, this.author});
+  FavoriteStory({required this.title, required this.id, required this.author});
 }

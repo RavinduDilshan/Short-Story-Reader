@@ -8,7 +8,7 @@ class contact extends StatelessWidget {
   Widget build(BuildContext context) {
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
-      flexibleSpace: Image(
+      flexibleSpace: const Image(
         image: AssetImage('res/0.jpg'),
         fit: BoxFit.cover,
       ),
@@ -24,7 +24,7 @@ class contact extends StatelessWidget {
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 3
-              ..color = Colors.orange[400],
+              ..color = Colors.orange,
           ),
         ),
         Text(
@@ -34,7 +34,7 @@ class contact extends StatelessWidget {
       ]),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
           onPressed: () {},
         )
       ],
@@ -43,53 +43,57 @@ class contact extends StatelessWidget {
       drawer: MyDrawer(),
       appBar: appBar,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: Center(
           child: ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             children: [
               TextField(
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    borderSide: BorderSide(color: Colors.orange, width: 5.0),
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 5.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    borderSide: BorderSide(color: Colors.orange, width: 3.0),
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 3.0),
                   ),
                   labelText: 'නම',
-                  labelStyle: TextStyle(color: Colors.orange),
-                  border: OutlineInputBorder(),
+                  labelStyle: const TextStyle(color: Colors.orange),
+                  border: const OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               TextField(
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    borderSide: BorderSide(color: Colors.orange, width: 5.0),
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 5.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    borderSide: BorderSide(color: Colors.orange, width: 3.0),
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 3.0),
                   ),
                   labelText: 'ඔබේ අදහස්',
-                  labelStyle: TextStyle(color: Colors.orange),
-                  border: OutlineInputBorder(),
+                  labelStyle: const TextStyle(color: Colors.orange),
+                  border: const OutlineInputBorder(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.red)),
-                child: Text(
+                    side: const BorderSide(color: Colors.red)),
+                child: const Text(
                   'යවන්න',
                   style: TextStyle(fontSize: 20.0),
                 ),

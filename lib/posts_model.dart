@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 
 class Post {
 
@@ -10,12 +9,12 @@ class Post {
   final String title;
 
   Post({
-    @required this.id,
-    @required this.author,
-    @required this.rating,
-    @required this.image,
-    @required this.story,
-     @required this.title,
+    required this.id,
+    required this.author,
+    required this.rating,
+    required this.image,
+    required this.story,
+     required this.title,
 
   });
 

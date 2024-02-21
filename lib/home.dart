@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sensor_app/bookmarks.dart';
-import 'package:sensor_app/drawer.dart';
+import 'package:sinhala_short_stories/bookmarks.dart';
+import 'package:sinhala_short_stories/drawer.dart';
 import './posts_model.dart';
 import './http_service.dart';
 import './post_detail.dart';
@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
     //app bar
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
-      flexibleSpace: Image(
+      flexibleSpace: const Image(
         image: AssetImage('res/containerBG.jpg'),
         fit: BoxFit.cover,
       ),
@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 3
-              ..color = Colors.orange[400],
+              ..color = Colors.orange,
           ),
         ),
         Text(
@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
         );
 
     return Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: Scaffold(
@@ -79,14 +79,14 @@ class Home extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
               if (snapshot.hasData) {
-                List<Post> posts = snapshot.data;
+                List<Post> posts = snapshot.data ?? [];
 
                 return Scrollbar(
                   child: CustomScrollView(
                     primary: false,
                     slivers: <Widget>[
                       SliverPadding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(16.0),
                         sliver: SliverGrid.count(
                           childAspectRatio: 2 / 3,
                           crossAxisCount: 3,
@@ -103,7 +103,7 @@ class Home extends StatelessWidget {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       CircularProgressIndicator(
                         color: Colors.orange,
                       ),

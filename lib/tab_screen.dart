@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sensor_app/drawer.dart';
-import 'package:sensor_app/favorite_screen.dart';
-import 'package:sensor_app/home.dart';
-
-import 'package:provider/provider.dart';
-import 'package:sensor_app/providers/favorite_story_provider.dart';
+import 'package:sinhala_short_stories/favorite_screen.dart';
+import 'package:sinhala_short_stories/home.dart';
 
 class TabScreen extends StatefulWidget {
   @override
@@ -28,14 +24,13 @@ class _TabScreenState extends State<TabScreen> {
     return CupertinoTabScaffold(
       // body: _pageSelected == 0 ? Home() : FavoriteScreen(),
       tabBar: CupertinoTabBar(
-       
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            title: Text('සියලුම කතා', style: TextStyle(fontSize: 12.0)),
+            label: 'සියලුම කතා',
             icon: Icon(Icons.book),
           ),
           BottomNavigationBarItem(
-            title: Text('ප්‍රියතම කතා', style: TextStyle(fontSize: 12.0)),
+            label:'ප්‍රියතම කතා',
             icon: Icon(Icons.star),
           ),
         ],
@@ -52,35 +47,7 @@ class _TabScreenState extends State<TabScreen> {
           return _pages[i];
         });
       },
-      // BottomNavigationBar(
-
-      //     // selectedItemColor: Colors.grey,
-      //     // unselectedItemColor: Colors.white,
-      //     currentIndex: _pageSelected,
-      //     type: BottomNavigationBarType.shifting,
-      //     onTap: _selectPage,
-      //     items: [
-      //       BottomNavigationBarItem(
-      //           backgroundColor: Colors.grey,
-      //           icon: Icon(
-      //             Icons.book,
-      //             color: Colors.white,
-      //           ),
-      //           title: Text(
-      //             'සියලුම කතා',
-      //             style: TextStyle(color: Colors.white),
-      //           )),
-      //       BottomNavigationBarItem(
-      //           backgroundColor: Colors.grey,
-      //           icon: Icon(
-      //             Icons.star,
-      //             color: Colors.white,
-      //           ),
-      //           title: Text(
-      //             'ප්‍රියතම කතා',
-      //             style: TextStyle(color: Colors.white),
-      //           ))
-      //     ]),
+     
     );
   }
 }

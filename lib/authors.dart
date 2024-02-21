@@ -1,21 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sensor_app/drawer.dart';
+import 'package:sinhala_short_stories/drawer.dart';
 
 class authors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.orange.shade500),
-      flexibleSpace: Image(
+      flexibleSpace: const Image(
         image: AssetImage('res/containerBG.jpg'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      // leading: IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed:(){}
-      // ),
+ 
       title: Stack(children: [
         Text(
           'ලේඛක මඩුල්ල',
@@ -23,7 +19,7 @@ class authors extends StatelessWidget {
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 3
-              ..color = Colors.orange[400],
+              ..color = Colors.orange,
           ),
         ),
         Text(
@@ -31,37 +27,32 @@ class authors extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800),
         ),
       ]),
-      // actions: <Widget>[
-      //   IconButton(
-      //     icon: Icon(Icons.search),
-      //     onPressed: () {},
-      //   )
-      // ],
+   
     );
 
     return Scaffold(
       appBar: appBar,
       drawer: MyDrawer(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(30),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: Card(
                 elevation: 10,
                 child: Stack(
                   children: [
                     Ink.image(
-                      image: AssetImage('res/lahiru.jpeg'),
+                      image: const AssetImage('res/lahiru.jpeg'),
                       height: 250,
                       fit: BoxFit.cover,
                     ),
-                    Positioned(
+                    const Positioned(
                       bottom: 16,
                       right: 16,
                       left: 16,
@@ -73,7 +64,7 @@ class authors extends StatelessWidget {
                             fontSize: 20),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       bottom: 3,
                       right: 16,
                       left: 16,
@@ -92,18 +83,18 @@ class authors extends StatelessWidget {
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(30),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: Card(
                 elevation: 10,
                 child: Stack(
                   children: [
                     Ink.image(
-                      image: AssetImage('res/shammi.jpg'),
+                      image: const AssetImage('res/shammi.jpg'),
                       height: 250,
                       fit: BoxFit.cover,
                     ),
-                    Positioned(
+                    const Positioned(
                       bottom: 16,
                       right: 16,
                       left: 16,
@@ -115,7 +106,7 @@ class authors extends StatelessWidget {
                             fontSize: 20),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       bottom: 3,
                       right: 16,
                       left: 16,

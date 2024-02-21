@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sensor_app/helpers/db_helper.dart';
+import 'package:sinhala_short_stories/helpers/db_helper.dart';
 import '../models/favorite_story_model.dart';
 
 class FavoriteStories with ChangeNotifier {
