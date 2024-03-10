@@ -1,12 +1,9 @@
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sinhala_short_stories/http_service.dart';
 import 'package:sinhala_short_stories/providers/favorite_story_provider.dart';
 
 import './posts_model.dart';
 import 'package:flutter/material.dart';
-import 'rating_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PostDetail extends StatefulWidget {
   late Post post;
@@ -149,7 +146,7 @@ class _PostDetailState extends State<PostDetail> {
                 size: 15,
                 padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
               ),
-              RaisedButton.icon(
+              ElevatedButton.icon(
                   onPressed: !widget.isFavorite
                       ? () async {
                           await Provider.of<FavoriteStories>(context,
@@ -165,8 +162,8 @@ class _PostDetailState extends State<PostDetail> {
                   label: !widget.isFavorite
                       ? const Text('ප්‍රියතම ලැයිස්තුවට')
                       : const Text('ප්‍රියතම ලැස්තුවේ පවතී'),
-                  color: Colors.orange[400],
-                  textColor: Colors.white)
+                  
+                  )
               // Row(
               //   children: <Widget>[
               //     // text(
