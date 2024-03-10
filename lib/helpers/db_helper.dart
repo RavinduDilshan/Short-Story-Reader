@@ -1,5 +1,6 @@
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
+import 'dart:async';
 
 class DbHelper {
   static Future<sql.Database> database() async {
@@ -21,7 +22,7 @@ class DbHelper {
     return db.query(table);
   }
 
-  static Future<void> delete(String table,String id) async {
+  static Future<void> delete(String table, String id) async {
     final db = await DbHelper.database();
     db.rawDelete('DELETE FROM $table WHERE id = $id');
   }

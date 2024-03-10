@@ -52,7 +52,7 @@ class authors extends StatelessWidget {
                       height: 250,
                       fit: BoxFit.cover,
                     ),
-                    const Positioned(
+                     Positioned(
                       bottom: 16,
                       right: 16,
                       left: 16,
@@ -64,7 +64,7 @@ class authors extends StatelessWidget {
                             fontSize: 20),
                       ),
                     ),
-                    const Positioned(
+                     Positioned(
                       bottom: 3,
                       right: 16,
                       left: 16,
@@ -94,7 +94,7 @@ class authors extends StatelessWidget {
                       height: 250,
                       fit: BoxFit.cover,
                     ),
-                    const Positioned(
+                     Positioned(
                       bottom: 16,
                       right: 16,
                       left: 16,
@@ -106,7 +106,7 @@ class authors extends StatelessWidget {
                             fontSize: 20),
                       ),
                     ),
-                    const Positioned(
+                     Positioned(
                       bottom: 3,
                       right: 16,
                       left: 16,

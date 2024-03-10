@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer.dart';
 
 class contact extends StatelessWidget {
+  const contact({super.key});
+
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
@@ -89,17 +90,15 @@ class contact extends StatelessWidget {
               const SizedBox(
                 height: 32,
               ),
-              FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: const BorderSide(color: Colors.red)),
+              TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.orange),
+                ),
+                onPressed: () {},
                 child: const Text(
                   'යවන්න',
                   style: TextStyle(fontSize: 20.0),
                 ),
-                color: Colors.orange,
-                textColor: Colors.white,
-                onPressed: () {},
               ),
             ],
           ),
