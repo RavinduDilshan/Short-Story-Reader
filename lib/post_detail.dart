@@ -10,7 +10,7 @@ class PostDetail extends StatefulWidget {
   int storyId;
   var isFavorite;
 
-  PostDetail(this.storyId);
+  PostDetail(this.storyId, {super.key});
 
   @override
   _PostDetailState createState() => _PostDetailState();
@@ -19,12 +19,8 @@ class PostDetail extends StatefulWidget {
 class _PostDetailState extends State<PostDetail> {
   @override
   void initState() {
-    if (widget.storyId != null) {
-      print(widget.storyId);
-      _getStory(widget.storyId);
-    } else {
-      print('null is is');
-    }
+    print(widget.storyId);
+    _getStory(widget.storyId);
 
     super.initState();
   }
@@ -114,10 +110,11 @@ class _PostDetailState extends State<PostDetail> {
                   child: Material(
                     elevation: 15.0,
                     shadowColor: Colors.yellow.shade900,
-                    child: Image(
+                    child: const Icon(Icons.book),
+                    /*     child: Image(
                       image: AssetImage(widget.post.image),
                       fit: BoxFit.cover,
-                    ),
+                    ), */
                   ),
                 ),
         ),
@@ -141,29 +138,26 @@ class _PostDetailState extends State<PostDetail> {
                   isBold: true,
                   padding: const EdgeInsets.only(top: 16.0)),
               text(
-                'By ${widget.post.author}',
+                'By author',
                 color: Colors.white70,
                 size: 15,
                 padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
               ),
               ElevatedButton.icon(
-                  onPressed: !widget.isFavorite
-                      ? () async {
-                          await Provider.of<FavoriteStories>(context,
-                                  listen: false)
-                              .addFavorite(
-                                  widget.post.title,
-                                  widget.post.id.toString(),
-                                  widget.post.author);
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
-                      : () {},
-                  icon: const Icon(Icons.favorite),
-                  label: !widget.isFavorite
-                      ? const Text('ප්‍රියතම ලැයිස්තුවට')
-                      : const Text('ප්‍රියතම ලැස්තුවේ පවතී'),
-                  
-                  )
+                onPressed: !widget.isFavorite
+                    ? () async {
+                        await Provider.of<FavoriteStories>(context,
+                                listen: false)
+                            .addFavorite(widget.post.title,
+                                widget.post.id.toString(), 'author');
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    : () {},
+                icon: const Icon(Icons.favorite),
+                label: !widget.isFavorite
+                    ? const Text('ප්‍රියතම ලැයිස්තුවට')
+                    : const Text('ප්‍රියතම ලැස්තුවේ පවතී'),
+              )
               // Row(
               //   children: <Widget>[
               //     // text(

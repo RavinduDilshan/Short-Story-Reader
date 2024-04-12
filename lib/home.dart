@@ -1,5 +1,6 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:sinhala_short_stories/bookmarks.dart';
 import 'package:sinhala_short_stories/drawer.dart';
 import './posts_model.dart';
 import './http_service.dart';
@@ -7,6 +8,8 @@ import './post_detail.dart';
 
 class Home extends StatelessWidget {
   final HttpService httpService = HttpService();
+
+  Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +60,8 @@ class Home extends StatelessWidget {
                   builder: (context) => PostDetail(post.id),
                 ),
               ),
-              child: Image(
-                image: AssetImage(post.image),
+              child: Image.memory(
+                base64Decode(post.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -77,7 +80,7 @@ class Home extends StatelessWidget {
           body: FutureBuilder(
             future: httpService.getPosts(),
             builder:
-                (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+                (BuildContext context, AsyncSnapshot<List<Post>?> snapshot) {
               if (snapshot.hasData) {
                 List<Post> posts = snapshot.data ?? [];
 
@@ -100,10 +103,10 @@ class Home extends StatelessWidget {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       CircularProgressIndicator(
                         color: Colors.orange,
                       ),
