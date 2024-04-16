@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sinhala_short_stories/drawer.dart';
@@ -12,10 +14,6 @@ class FavoriteScreen extends StatelessWidget {
       fit: BoxFit.cover,
     ),
     elevation: .5,
-    // leading: IconButton(
-    //   icon: Icon(Icons.menu),
-    //   onPressed:(){}
-    // ),
     title: Stack(children: [
       Text(
         'ප්‍රියතම කතා',
@@ -32,19 +30,14 @@ class FavoriteScreen extends StatelessWidget {
         style: TextStyle(color: Colors.grey.shade800, fontFamily: 'sara'),
       ),
     ]),
-    // actions: <Widget>[
-    //   IconButton(
-    //     icon: Icon(Icons.search),
-    //     onPressed: () {},
-    //   )
-    // ],
   );
+
+  FavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      drawer: MyDrawer(),
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
@@ -58,15 +51,15 @@ class FavoriteScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : Consumer<FavoriteStories>(
-                    child: const Center(
-                      child: Text(
-                        'ප්‍රියතම කතා නොමැත',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
                     builder: (context, story, ch) => story
                             .getFavoriteStorie.isEmpty
-                        ? const SizedBox.shrink()
+                        ? const Center(
+                            child: Text(
+                              'ප්‍රියතම කතා නොමැත',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          )
                         : ListView.builder(
                             itemBuilder: (ctx, i) => GestureDetector(
                               onTap: () {
@@ -75,25 +68,27 @@ class FavoriteScreen extends StatelessWidget {
                                     builder: (
                                       context,
                                     ) =>
-                                        PostDetail(int.parse(
-                                            story.getFavoriteStorie[i].id)),
+                                        PostDetail(
+                                            story.getFavoriteStorie[i].id),
                                   ),
                                 );
                               },
                               child: Card(
                                 elevation: 4,
                                 child: ListTile(
-                                  leading: const Icon(Icons.bookmark),
+                                  leading: Image.memory(
+                                    base64Decode(
+                                        story.getFavoriteStorie[i].image),
+                                    fit: BoxFit.cover,
+                                  ),
                                   subtitle:
                                       Text(story.getFavoriteStorie[i].author),
                                   title: Text(story.getFavoriteStorie[i].title),
-                               
                                   trailing: Wrap(
                                     spacing: 12, // space between two icons
                                     children: <Widget>[
                                       GestureDetector(
                                           child: const Icon(Icons.delete),
-                                      
                                           onTap: () => showDialog<String>(
                                                 context: context,
                                                 builder:

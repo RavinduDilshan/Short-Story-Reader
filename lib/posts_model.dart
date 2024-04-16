@@ -1,6 +1,6 @@
 class Post {
-  final int id;
-  // final String author;
+  final String id;
+  final String author;
   // final int rating;
   final String image;
   final String story;
@@ -8,7 +8,8 @@ class Post {
 
   Post({
     required this.id,
-    /*   required this.author,
+    required this.author,
+    /* 
     required this.rating, */
     required this.image,
     required this.story,
@@ -17,8 +18,8 @@ class Post {
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-        id: json['id'] as int,
-        // author: json['author'] as String,
+        id: json['id'] as String,
+        author: json['author'] as String,
         // rating: json['rating'] as int,
         image: json['image'] as String,
         story: json['story'] as String,

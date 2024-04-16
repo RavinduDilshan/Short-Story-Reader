@@ -9,8 +9,10 @@ class FavoriteStories with ChangeNotifier {
     return [..._favoriteList];
   }
 
-  Future<void> addFavorite(String title, String id, String author) async {
-    var _FavoriteItem = FavoriteStory(title: title, id: id, author: author);
+  Future<void> addFavorite(
+      String title, String id, String author, String image) async {
+    var _FavoriteItem =
+        FavoriteStory(title: title, id: id, author: author, image: image);
     _favoriteList.add(_FavoriteItem);
 
     DbHelper.insert('favorite_stories', {
@@ -27,7 +29,10 @@ class FavoriteStories with ChangeNotifier {
 
     _favoriteList = dataList
         .map((item) => FavoriteStory(
-            title: item['title'], id: item['id'], author: item['author']))
+            title: item['title'],
+            id: item['id'],
+            author: item['author'],
+            image: item['image']))
         .toList();
 
     notifyListeners();
@@ -42,7 +47,6 @@ class FavoriteStories with ChangeNotifier {
   }
 
   Future<void> deleteFavorite(String id) async {
-    
     _favoriteList.removeWhere((element) => element.id == id);
 
     notifyListeners();
