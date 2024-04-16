@@ -29,7 +29,7 @@ class HttpService {
     }
   }
 
-  Future<Post> getStoryById(int id) async {
+/*   Future<Post> getStoryById(int id) async {
     Uri uri = Uri.parse(
         'https://mawathe-geethaya-api.herokuapp.com/api/test/story/$id"');
     Response res = await get(uri);
@@ -44,5 +44,5 @@ class HttpService {
         title: finalDAta['title']);
 
     return story;
-  }
+  } */
 }

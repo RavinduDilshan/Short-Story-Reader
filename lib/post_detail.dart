@@ -1,13 +1,16 @@
+import 'dart:convert';
+
 import 'package:provider/provider.dart';
 import 'package:sinhala_short_stories/http_service.dart';
 import 'package:sinhala_short_stories/providers/favorite_story_provider.dart';
+import 'package:sinhala_short_stories/services/firebase_service.dart';
 
 import './posts_model.dart';
 import 'package:flutter/material.dart';
 
 class PostDetail extends StatefulWidget {
-  late Post post;
-  int storyId;
+  Post? post;
+  String storyId;
   var isFavorite;
 
   PostDetail(this.storyId, {super.key});
@@ -25,8 +28,11 @@ class _PostDetailState extends State<PostDetail> {
     super.initState();
   }
 
-  Future<void> _getStory(int id) async {
-    var res = await HttpService().getStoryById(id);
+  Future<void> _getStory(String id) async {
+    var res = await FirebaseService().getStoryById(id);
+    if (res == null) {
+      return;
+    }
     setState(() {
       widget.post = res;
     });
@@ -35,7 +41,7 @@ class _PostDetailState extends State<PostDetail> {
   @override
   Widget build(BuildContext context) {
     widget.isFavorite = Provider.of<FavoriteStories>(context)
-        .checkFavorite(widget.post.id.toString());
+        .checkFavorite((widget.post?.id ?? -1).toString());
 
     const snackBar = SnackBar(
       duration: Duration(seconds: 2),
@@ -89,12 +95,6 @@ class _PostDetailState extends State<PostDetail> {
           style: TextStyle(color: Colors.grey.shade800),
         ),
       ]),
-      // actions: <Widget>[
-      //   IconButton(
-      //     icon: Icon(Icons.search),
-      //     onPressed: () {},
-      //   )
-      // ],
     );
 
     final topLeft = Column(
@@ -106,16 +106,14 @@ class _PostDetailState extends State<PostDetail> {
                   child: CircularProgressIndicator(),
                 )
               : Hero(
-                  tag: widget.post.title,
+                  tag: widget.post?.title ?? '',
                   child: Material(
-                    elevation: 15.0,
-                    shadowColor: Colors.yellow.shade900,
-                    child: const Icon(Icons.book),
-                    /*     child: Image(
-                      image: AssetImage(widget.post.image),
-                      fit: BoxFit.cover,
-                    ), */
-                  ),
+                      elevation: 15.0,
+                      shadowColor: Colors.yellow.shade900,
+                      child: Image.memory(
+                        base64Decode(widget.post?.image ?? ''),
+                        fit: BoxFit.cover,
+                      )),
                 ),
         ),
       ],
@@ -132,13 +130,13 @@ class _PostDetailState extends State<PostDetail> {
               )
             ]
           : <Widget>[
-              text(widget.post.title,
+              text(widget.post?.title ?? '',
                   color: Colors.white,
                   size: 25,
                   isBold: true,
                   padding: const EdgeInsets.only(top: 16.0)),
               text(
-                'By author',
+                'කතුවරයා - ${widget.post?.author ?? ''}',
                 color: Colors.white70,
                 size: 15,
                 padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
@@ -148,8 +146,11 @@ class _PostDetailState extends State<PostDetail> {
                     ? () async {
                         await Provider.of<FavoriteStories>(context,
                                 listen: false)
-                            .addFavorite(widget.post.title,
-                                widget.post.id.toString(), 'author');
+                            .addFavorite(
+                                widget.post?.title ?? '',
+                                (widget.post?.id ?? -1).toString(),
+                                widget.post?.author ?? '',
+                                widget.post?.image ?? '');
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
                     : () {},
@@ -158,32 +159,6 @@ class _PostDetailState extends State<PostDetail> {
                     ? const Text('ප්‍රියතම ලැයිස්තුවට')
                     : const Text('ප්‍රියතම ලැස්තුවේ පවතී'),
               )
-              // Row(
-              //   children: <Widget>[
-              //     // text(
-              //     //   book.price,
-              //     //   isBold: true,
-              //     //   padding: EdgeInsets.only(right: 8.0),
-              //     // ),
-              //     // RatingBar(
-              //     //   rating: post.rating,
-              //     //   color: Colors.white,
-              //     // )
-              //   ],
-              // ),
-              // SizedBox(height: 32.0),
-              // FlatButton(
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(18.0),
-              //       side: BorderSide(color: Colors.red)),
-              //   child: Text(
-              //     'පසුවට කියවන්න',
-              //     style: TextStyle(fontSize: 15.0),
-              //   ),
-              //   color: Colors.orange,
-              //   textColor: Colors.white,
-              //   onPressed: () {},
-              // ),
             ],
     );
 
@@ -215,7 +190,7 @@ class _PostDetailState extends State<PostDetail> {
                 child: CircularProgressIndicator(),
               )
             : Text(
-                widget.post.story,
+                widget.post?.story ?? '',
                 style: const TextStyle(
                     fontSize: 17.0, height: 1.5, color: Colors.white),
               ),

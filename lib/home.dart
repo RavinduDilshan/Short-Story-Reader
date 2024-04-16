@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:sinhala_short_stories/drawer.dart';
+import 'package:sinhala_short_stories/services/firebase_service.dart';
 import './posts_model.dart';
 import './http_service.dart';
 import './post_detail.dart';
@@ -21,10 +22,6 @@ class Home extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      // leading: IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed:(){}
-      // ),
       title: Stack(children: [
         Text(
           'මාවතේ ගීතය',
@@ -41,12 +38,6 @@ class Home extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800, fontFamily: 'sara'),
         ),
       ]),
-      // actions: <Widget>[
-      //   IconButton(
-      //     icon: Icon(Icons.search),
-      //     onPressed: () {},
-      //   )
-      // ],
     );
 
     createTile(Post post) => Hero(
@@ -73,12 +64,11 @@ class Home extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: Scaffold(
-          // backgroundColor: Theme.of(context).primaryColor,
           drawer: MyDrawer(),
           backgroundColor: Colors.transparent,
           appBar: appBar,
           body: FutureBuilder(
-            future: httpService.getPosts(),
+            future: FirebaseService().getAllStoriesList(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Post>?> snapshot) {
               if (snapshot.hasData) {
@@ -119,7 +109,6 @@ class Home extends StatelessWidget {
                       )
                     ],
                   ),
-                  // child: CircularProgressIndicator(),
                 );
               }
             },
