@@ -22,7 +22,6 @@ class PostDetail extends StatefulWidget {
 class _PostDetailState extends State<PostDetail> {
   @override
   void initState() {
-    print(widget.storyId);
     _getStory(widget.storyId);
 
     super.initState();
