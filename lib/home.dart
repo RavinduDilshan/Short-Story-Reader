@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:sinhala_short_stories/drawer.dart';
 import 'package:sinhala_short_stories/services/firebase_service.dart';
 import './posts_model.dart';
-import './http_service.dart';
 import './post_detail.dart';
 
 class Home extends StatelessWidget {
-  final HttpService httpService = HttpService();
-
-  Home({super.key});
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
