@@ -45,6 +45,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.29.0
   cloud_firestore: ^4.16.1
+  rename: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -72,8 +73,8 @@ flutter:
   assets:
     - res/0.jpg
     - res/drawer_img.jpg
-    - res/lahiru.jpeg
-    - res/shammi.jpg
+    - res/lahiru.png
+    - res/shammi.png
     - res/containerBG.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

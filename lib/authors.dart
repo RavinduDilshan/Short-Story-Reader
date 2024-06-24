@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sinhala_short_stories/drawer.dart';
 
 class authors extends StatelessWidget {
+  const authors({super.key});
+
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
@@ -11,7 +13,6 @@ class authors extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       elevation: .5,
- 
       title: Stack(children: [
         Text(
           'ලේඛක මඩුල්ල',
@@ -27,7 +28,6 @@ class authors extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800),
         ),
       ]),
-   
     );
 
     return Scaffold(
@@ -48,11 +48,11 @@ class authors extends StatelessWidget {
                 child: Stack(
                   children: [
                     Ink.image(
-                      image: const AssetImage('res/lahiru.jpeg'),
+                      image: const AssetImage('res/lahiru.png'),
                       height: 250,
                       fit: BoxFit.cover,
                     ),
-                     Positioned(
+                    const Positioned(
                       bottom: 16,
                       right: 16,
                       left: 16,
@@ -64,7 +64,7 @@ class authors extends StatelessWidget {
                             fontSize: 20),
                       ),
                     ),
-                     Positioned(
+                    const Positioned(
                       bottom: 3,
                       right: 16,
                       left: 16,
@@ -90,11 +90,11 @@ class authors extends StatelessWidget {
                 child: Stack(
                   children: [
                     Ink.image(
-                      image: const AssetImage('res/shammi.jpg'),
+                      image: const AssetImage('res/shammi.png'),
                       height: 250,
                       fit: BoxFit.cover,
                     ),
-                     Positioned(
+                    const Positioned(
                       bottom: 16,
                       right: 16,
                       left: 16,
@@ -106,7 +106,7 @@ class authors extends StatelessWidget {
                             fontSize: 20),
                       ),
                     ),
-                     Positioned(
+                    const Positioned(
                       bottom: 3,
                       right: 16,
                       left: 16,
