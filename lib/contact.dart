@@ -1,9 +1,84 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer.dart';
 
-class contact extends StatelessWidget {
-  const contact({super.key});
+class contact extends StatefulWidget {
+  contact({super.key});
+
+  @override
+  State<contact> createState() => _contactState();
+}
+
+class _contactState extends State<contact> {
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _commentController = TextEditingController();
+
+  Future _sendFeedbackToFirebase(BuildContext context) async {
+    if (_nameController.text.isEmpty) {
+      await showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('නම'),
+          content: const Text('කරුණාකර නම ඇතුලත් කරන්න'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, 'Cancel');
+                return;
+              },
+              child: const Text('හරි'),
+            )
+          ],
+        ),
+      );
+    }
+
+    if (_commentController.text.isEmpty) {
+      await showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('අදහස්'),
+          content: const Text('කරුණාකර අදහස් ඇතුලත් කරන්න'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, 'Cancel');
+                return;
+              },
+              child: const Text('හරි'),
+            )
+          ],
+        ),
+      );
+    }
+
+    await FirebaseFirestore.instance.collection('feedbacks').add({
+      'name': '${_nameController.text}',
+      'comment': '${_commentController.text}'
+    });
+
+    await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('අදහස්'),
+        content: const Text('අදහස යවන ලදී'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'Cancel');
+              return;
+            },
+            child: const Text('හරි'),
+          )
+        ],
+      ),
+    );
+
+    _nameController.clear();
+    _commentController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +89,6 @@ class contact extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      // leading: IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed:(){}
-      // ),
       title: Stack(children: [
         Text(
           'අපට කියන්න',
@@ -33,12 +104,6 @@ class contact extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800),
         ),
       ]),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () {},
-        )
-      ],
     );
     return Scaffold(
       drawer: MyDrawer(),
@@ -53,7 +118,10 @@ class contact extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             children: [
               TextField(
+                controller: _nameController,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
+                  alignLabelWithHint: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
                     borderSide:
@@ -70,8 +138,12 @@ class contact extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              TextField(
+              TextFormField(
+                controller: _commentController,
+                maxLines: 10,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
+                  alignLabelWithHint: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
                     borderSide:
@@ -94,10 +166,10 @@ class contact extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.orange),
                 ),
-                onPressed: () {},
+                onPressed: () async => await _sendFeedbackToFirebase(context),
                 child: const Text(
                   'යවන්න',
-                  style: TextStyle(fontSize: 20.0),
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
                 ),
               ),
             ],

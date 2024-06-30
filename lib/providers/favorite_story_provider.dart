@@ -11,14 +11,15 @@ class FavoriteStories with ChangeNotifier {
 
   Future<void> addFavorite(
       String title, String id, String author, String image) async {
-    var _FavoriteItem =
+    var FavoriteItem =
         FavoriteStory(title: title, id: id, author: author, image: image);
-    _favoriteList.add(_FavoriteItem);
+    _favoriteList.add(FavoriteItem);
 
     DbHelper.insert('favorite_stories', {
-      'id': _FavoriteItem.id,
-      'title': _FavoriteItem.title,
-      'author': _FavoriteItem.author
+      'id': FavoriteItem.id,
+      'title': FavoriteItem.title,
+      'author': FavoriteItem.author,
+      'image': FavoriteItem.image
     });
 
     notifyListeners();
@@ -34,13 +35,12 @@ class FavoriteStories with ChangeNotifier {
             author: item['author'],
             image: item['image']))
         .toList();
-
     notifyListeners();
   }
 
   bool checkFavorite(String id) {
     var isFavorite = _favoriteList.where((element) => element.id == id);
-    if (isFavorite.length == 0) {
+    if (isFavorite.isEmpty) {
       return false;
     }
     return true;
