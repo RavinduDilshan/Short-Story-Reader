@@ -5,11 +5,12 @@ import 'dart:async';
 class DbHelper {
   static Future<sql.Database> database() async {
     final dbPath = await sql.getDatabasesPath();
+
     return sql.openDatabase(path.join(dbPath, 'favorites.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE favorite_stories(id TEXT PRIMARY KEY,title TEXT,author TEXT)');
-    }, version: 1);
+          'CREATE TABLE favorite_stories(id TEXT PRIMARY KEY,title TEXT,author TEXT,image TEXT)');
+    }, singleInstance: true, version: 1);
   }
 
   static Future<void> insert(String table, Map<String, Object> data) async {

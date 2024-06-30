@@ -1,12 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:sinhala_short_stories/bookmarks.dart';
 import 'package:sinhala_short_stories/drawer.dart';
+import 'package:sinhala_short_stories/services/firebase_service.dart';
 import './posts_model.dart';
-import './http_service.dart';
 import './post_detail.dart';
 
 class Home extends StatelessWidget {
-  final HttpService httpService = HttpService();
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +19,6 @@ class Home extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      // leading: IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed:(){}
-      // ),
       title: Stack(children: [
         Text(
           'මාවතේ ගීතය',
@@ -38,12 +35,6 @@ class Home extends StatelessWidget {
           style: TextStyle(color: Colors.grey.shade800, fontFamily: 'sara'),
         ),
       ]),
-      // actions: <Widget>[
-      //   IconButton(
-      //     icon: Icon(Icons.search),
-      //     onPressed: () {},
-      //   )
-      // ],
     );
 
     createTile(Post post) => Hero(
@@ -57,8 +48,8 @@ class Home extends StatelessWidget {
                   builder: (context) => PostDetail(post.id),
                 ),
               ),
-              child: Image(
-                image: AssetImage(post.image),
+              child: Image.memory(
+                base64Decode(post.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -70,14 +61,13 @@ class Home extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
         child: Scaffold(
-          // backgroundColor: Theme.of(context).primaryColor,
           drawer: MyDrawer(),
           backgroundColor: Colors.transparent,
           appBar: appBar,
           body: FutureBuilder(
-            future: httpService.getPosts(),
+            future: FirebaseService().getAllStoriesList(),
             builder:
-                (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+                (BuildContext context, AsyncSnapshot<List<Post>?> snapshot) {
               if (snapshot.hasData) {
                 List<Post> posts = snapshot.data ?? [];
 
@@ -100,10 +90,10 @@ class Home extends StatelessWidget {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       CircularProgressIndicator(
                         color: Colors.orange,
                       ),
@@ -116,7 +106,6 @@ class Home extends StatelessWidget {
                       )
                     ],
                   ),
-                  // child: CircularProgressIndicator(),
                 );
               }
             },

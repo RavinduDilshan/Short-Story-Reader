@@ -9,14 +9,17 @@ class FavoriteStories with ChangeNotifier {
     return [..._favoriteList];
   }
 
-  Future<void> addFavorite(String title, String id, String author) async {
-    var _FavoriteItem = FavoriteStory(title: title, id: id, author: author);
-    _favoriteList.add(_FavoriteItem);
+  Future<void> addFavorite(
+      String title, String id, String author, String image) async {
+    var FavoriteItem =
+        FavoriteStory(title: title, id: id, author: author, image: image);
+    _favoriteList.add(FavoriteItem);
 
     DbHelper.insert('favorite_stories', {
-      'id': _FavoriteItem.id,
-      'title': _FavoriteItem.title,
-      'author': _FavoriteItem.author
+      'id': FavoriteItem.id,
+      'title': FavoriteItem.title,
+      'author': FavoriteItem.author,
+      'image': FavoriteItem.image
     });
 
     notifyListeners();
@@ -27,22 +30,23 @@ class FavoriteStories with ChangeNotifier {
 
     _favoriteList = dataList
         .map((item) => FavoriteStory(
-            title: item['title'], id: item['id'], author: item['author']))
+            title: item['title'],
+            id: item['id'],
+            author: item['author'],
+            image: item['image']))
         .toList();
-
     notifyListeners();
   }
 
   bool checkFavorite(String id) {
     var isFavorite = _favoriteList.where((element) => element.id == id);
-    if (isFavorite.length == 0) {
+    if (isFavorite.isEmpty) {
       return false;
     }
     return true;
   }
 
   Future<void> deleteFavorite(String id) async {
-    
     _favoriteList.removeWhere((element) => element.id == id);
 
     notifyListeners();
