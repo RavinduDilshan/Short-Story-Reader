@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("res/0.jpg"),
+            image: AssetImage("res/0.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -33,18 +33,20 @@ class MyDrawer extends StatelessWidget {
               child: SizedBox.shrink(),
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("res/drawer_img.jpg"),
+                      image: AssetImage("res/drawer_img.png"),
                       fit: BoxFit.cover)),
             ),
             ListTile(
               leading: const Icon(
                 Icons.home,
-                color: Colors.deepOrange,
+                color: Color(0xff5b5858),
               ),
               title: const Text(
                 'ප්‍රධාන පිටුව',
                 style: TextStyle(
-                    fontSize: 17, color: Colors.orange, fontFamily: 'sara'),
+                    fontSize: 17,
+                    color: Color(0xff5b5858),
+                    fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -57,35 +59,16 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
-            // ListTile(
-            //   leading: Icon(Icons.bookmark),
-            //   title: Text(
-            //     'සුරැකුම්',
-            //     style: TextStyle(fontSize: 20),
-            //   ),
-            //   onTap: () {
-            //     // Update the state of the app
-            //     // ...
-            //     // Then close the drawer
-            //     // Navigator.pop(context);
-            //     Navigator.of(context).push(
-            //       MaterialPageRoute(
-            //         builder: (context) => Bookmarks(),
-            //       ),
-            //     );
-            //   },
-            // ),
             ListTile(
-              leading: const Icon(Icons.person, color: Colors.deepOrange),
+              leading: const Icon(Icons.person, color: Color(0xff5b5858)),
               title: const Text(
                 'ලේඛක මඩුල්ල',
-                style: TextStyle(fontSize: 17, color: Colors.orange),
+                style: TextStyle(
+                    fontSize: 17,
+                    color: Color(0xff5b5858),
+                    fontWeight: FontWeight.bold),
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                // Navigator.pop(context);
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => authors(),
@@ -95,30 +78,35 @@ class MyDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.swap_vertical_circle,
-                  color: Colors.deepOrange),
+                  color: Color(0xff5b5858)),
               title: const Text(
                 'වෙබ් පිටුව',
-                style: TextStyle(fontSize: 17, color: Colors.orange),
+                style: TextStyle(
+                    fontSize: 17,
+                    color: Color(0xff5b5858),
+                    fontWeight: FontWeight.bold),
               ),
               onTap: _launchURL,
             ),
             ListTile(
-              leading: const Icon(Icons.share, color: Colors.deepOrange),
+              leading: const Icon(Icons.share, color: Color(0xff5b5858)),
               title: const Text(
                 'යාලුවන්ට කියන්න',
-                style: TextStyle(fontSize: 17, color: Colors.orange),
+                style: TextStyle(
+                    fontSize: 17,
+                    color: Color(0xff5b5858),
+                    fontWeight: FontWeight.bold),
               ),
-              onTap: () {
-                /*  Share.share(
-                    'මාවතේ ගීතය ඇප් එක ඩවුන්ලෝඩ් කරගන්න ක්ලික් කරන්න - https://example.com'); */
-              },
+              onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.message, color: Colors.deepOrange),
+              leading: const Icon(Icons.message, color: Color(0xff5b5858)),
               title: const Text(
                 'අපට කියන්න',
                 style: TextStyle(
-                    fontSize: 17, color: Colors.orange, fontFamily: 'sara'),
+                    fontSize: 17,
+                    color: Color(0xff5b5858),
+                    fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 Navigator.of(context).pushReplacement(
@@ -128,22 +116,6 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.code,
-            //     color: Colors.deepOrange,
-            //   ),
-            //   title: Text(
-            //     'About Developer',
-            //     style: TextStyle(fontSize: 17, color: Colors.orange),
-            //   ),
-            //   onTap: () {
-            //     // Update the state of the app
-            //     // ...
-            //     // Then close the drawer
-            //     Navigator.pop(context);
-            //   },
-            // ),
           ],
         ),
       ),

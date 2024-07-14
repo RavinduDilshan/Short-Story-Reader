@@ -48,7 +48,7 @@ class _PostDetailState extends State<PostDetail> {
         'ප්‍රියතම ලැයිස්තුවට එක් කරන ලදී',
         textAlign: TextAlign.center,
       ),
-      backgroundColor: Colors.orange,
+      backgroundColor: Color(0xff5b5858),
     );
 
     ///scrolling text description
@@ -56,21 +56,24 @@ class _PostDetailState extends State<PostDetail> {
       width: double.infinity,
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("res/containerBG.jpg"), fit: BoxFit.cover)),
+              image: AssetImage("res/containerBG.png"), fit: BoxFit.cover)),
       child: widget.post == null
           ? SizedBox(
               height: MediaQuery.of(context).size.height -
                   MediaQuery.of(context).size.height * 0.4,
               child: Center(
                 child: CircularProgressIndicator(
-                  color: Colors.orange.shade500,
+                  color: Color(0xff5b5858),
                 ),
               ),
             )
           : Text(
               widget.post?.story ?? '',
               style: const TextStyle(
-                  fontSize: 17.0, height: 1.5, color: Colors.white),
+                  fontSize: 17.0,
+                  height: 1.5,
+                  color: Color(0xff5b5858),
+                  fontWeight: FontWeight.bold),
             ),
     );
 
@@ -100,12 +103,12 @@ class _PostDetailState extends State<PostDetail> {
         child: widget.isFavorite
             ? Icon(
                 Icons.favorite,
-                color: Colors.orange.shade500,
+                color: Color(0xff5b5858),
                 size: 50,
               )
             : Icon(
                 Icons.favorite_border_outlined,
-                color: Colors.orange.shade500,
+                color: Color(0xff5b5858),
                 size: 50,
               ),
       ),
@@ -116,7 +119,7 @@ class _PostDetailState extends State<PostDetail> {
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Colors.orange.shade500,
+                  color: Color(0xff5b5858),
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
@@ -130,13 +133,14 @@ class _PostDetailState extends State<PostDetail> {
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
                     widget.post?.title ?? '',
-                    style: TextStyle(color: Colors.orange.shade500),
+                    style: TextStyle(
+                        color: Color(0xff5b5858), fontWeight: FontWeight.bold),
                   ),
                 ),
                 background: widget.post == null
                     ? Center(
                         child: CircularProgressIndicator(
-                          color: Colors.orange.shade500,
+                          color: Color(0xff5b5858),
                         ),
                       )
                     : AspectRatio(
@@ -164,7 +168,7 @@ class _PostDetailState extends State<PostDetail> {
                   height: 50,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("res/containerBG.jpg"),
+                          image: AssetImage("res/containerBG.png"),
                           fit: BoxFit.cover))),
             )
           ],

@@ -7,27 +7,16 @@ class authors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      iconTheme: IconThemeData(color: Colors.orange.shade500),
+      iconTheme: IconThemeData(color: Color(0xff5b5858)),
       flexibleSpace: const Image(
-        image: AssetImage('res/containerBG.jpg'),
+        image: AssetImage('res/containerBG.png'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      title: Stack(children: [
-        Text(
-          'ලේඛක මඩුල්ල',
-          style: TextStyle(
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 3
-              ..color = Colors.orange,
-          ),
-        ),
-        Text(
-          'ලේඛක මඩුල්ල',
-          style: TextStyle(color: Colors.grey.shade800),
-        ),
-      ]),
+      title: Text(
+        'ලේඛක මඩුල්ල',
+        style: TextStyle(color: Color(0xff5b5858), fontWeight: FontWeight.bold),
+      ),
     );
 
     return Scaffold(
@@ -36,7 +25,7 @@ class authors extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
+                image: AssetImage("res/0.png"), fit: BoxFit.cover)),
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           ClipRRect(
