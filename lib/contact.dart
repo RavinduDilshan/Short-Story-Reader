@@ -83,27 +83,16 @@ class _contactState extends State<contact> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      iconTheme: IconThemeData(color: Colors.orange.shade500),
+      iconTheme: IconThemeData(color: Color(0xff5b5858)),
       flexibleSpace: const Image(
-        image: AssetImage('res/0.jpg'),
+        image: AssetImage('res/0.png'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      title: Stack(children: [
-        Text(
-          'අපට කියන්න',
-          style: TextStyle(
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 3
-              ..color = Colors.orange,
-          ),
-        ),
-        Text(
-          'අපට කියන්න',
-          style: TextStyle(color: Colors.grey.shade800),
-        ),
-      ]),
+      title: Text(
+        'අපට කියන්න',
+        style: TextStyle(color: Color(0xff5b5858), fontWeight: FontWeight.bold),
+      ),
     );
     return Scaffold(
       drawer: MyDrawer(),
@@ -111,7 +100,7 @@ class _contactState extends State<contact> {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
+                image: AssetImage("res/0.png"), fit: BoxFit.cover)),
         child: Center(
           child: ListView(
             shrinkWrap: true,
@@ -125,15 +114,15 @@ class _contactState extends State<contact> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
                     borderSide:
-                        const BorderSide(color: Colors.orange, width: 5.0),
+                        const BorderSide(color: Color(0xff5b5858), width: 5.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
                     borderSide:
-                        const BorderSide(color: Colors.orange, width: 3.0),
+                        const BorderSide(color: Color(0xff5b5858), width: 3.0),
                   ),
                   labelText: 'නම',
-                  labelStyle: const TextStyle(color: Colors.orange),
+                  labelStyle: const TextStyle(color: Color(0xff5b5858)),
                   border: const OutlineInputBorder(),
                 ),
               ),
@@ -147,15 +136,15 @@ class _contactState extends State<contact> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
                     borderSide:
-                        const BorderSide(color: Colors.orange, width: 5.0),
+                        const BorderSide(color: Color(0xff5b5858), width: 5.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
                     borderSide:
-                        const BorderSide(color: Colors.orange, width: 3.0),
+                        const BorderSide(color: Color(0xff5b5858), width: 3.0),
                   ),
                   labelText: 'ඔබේ අදහස්',
-                  labelStyle: const TextStyle(color: Colors.orange),
+                  labelStyle: const TextStyle(color: Color(0xff5b5858)),
                   border: const OutlineInputBorder(),
                 ),
               ),
@@ -164,7 +153,7 @@ class _contactState extends State<contact> {
               ),
               TextButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.orange),
+                  backgroundColor: MaterialStateProperty.all(Color(0xff5b5858)),
                 ),
                 onPressed: () async => await _sendFeedbackToFirebase(context),
                 child: const Text(

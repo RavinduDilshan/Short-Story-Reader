@@ -2,34 +2,21 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sinhala_short_stories/drawer.dart';
 import 'package:sinhala_short_stories/post_detail.dart';
 import 'package:sinhala_short_stories/providers/favorite_story_provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
   final appBar = AppBar(
-    iconTheme: IconThemeData(color: Colors.orange.shade500),
+    iconTheme: IconThemeData(color: Color(0xff5b5858)),
     flexibleSpace: const Image(
-      image: AssetImage('res/containerBG.jpg'),
+      image: AssetImage('res/containerBG.png'),
       fit: BoxFit.cover,
     ),
     elevation: .5,
-    title: Stack(children: [
-      Text(
-        'ප්‍රියතම කතා',
-        style: TextStyle(
-          fontFamily: 'sara',
-          foreground: Paint()
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 3
-            ..color = Colors.orange,
-        ),
-      ),
-      Text(
-        'ප්‍රියතම කතා',
-        style: TextStyle(color: Colors.grey.shade800, fontFamily: 'sara'),
-      ),
-    ]),
+    title: Text(
+      'ප්‍රියතම කතා',
+      style: TextStyle(color: Color(0xff5b5858), fontWeight: FontWeight.bold),
+    ),
   );
 
   FavoriteScreen({super.key});
@@ -41,7 +28,7 @@ class FavoriteScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
+                image: AssetImage("res/0.png"), fit: BoxFit.cover)),
         child: FutureBuilder(
             future: Provider.of<FavoriteStories>(context, listen: false)
                 .fetchFavorites(),
@@ -74,7 +61,7 @@ class FavoriteScreen extends StatelessWidget {
                                 );
                               },
                               child: Card(
-                                elevation: 4,
+                                color: Color(0xff5b5858).withOpacity(0.01),
                                 child: ListTile(
                                   leading: Image.memory(
                                     base64Decode(

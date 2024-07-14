@@ -22,7 +22,6 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
-      // body: _pageSelected == 0 ? Home() : FavoriteScreen(),
       tabBar: CupertinoTabBar(
         items: const [
           BottomNavigationBarItem(
@@ -30,11 +29,11 @@ class _TabScreenState extends State<TabScreen> {
             icon: Icon(Icons.book),
           ),
           BottomNavigationBarItem(
-            label:'ප්‍රියතම කතා',
+            label: 'ප්‍රියතම කතා',
             icon: Icon(Icons.star),
           ),
         ],
-        activeColor: Colors.orange,
+        activeColor: Color(0xff5b5858),
         currentIndex: _pageSelected,
         onTap: (ind) {
           setState(() {
@@ -47,7 +46,6 @@ class _TabScreenState extends State<TabScreen> {
           return _pages[i];
         });
       },
-     
     );
   }
 }
