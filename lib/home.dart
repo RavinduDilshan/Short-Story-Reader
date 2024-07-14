@@ -13,35 +13,23 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     //app bar
     final appBar = AppBar(
-      iconTheme: IconThemeData(color: Colors.orange.shade500),
+      iconTheme: IconThemeData(color: Color(0xff5b5858)),
       flexibleSpace: const Image(
-        image: AssetImage('res/containerBG.jpg'),
+        image: AssetImage('res/containerBG.png'),
         fit: BoxFit.cover,
       ),
       elevation: .5,
-      title: Stack(children: [
-        Text(
-          'මාවතේ ගීතය',
-          style: TextStyle(
-            fontFamily: 'sara',
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 3
-              ..color = Colors.orange,
-          ),
-        ),
-        Text(
-          'මාවතේ ගීතය',
-          style: TextStyle(color: Colors.grey.shade800, fontFamily: 'sara'),
-        ),
-      ]),
+      title: Text(
+        'කෙටි කතා',
+        style: TextStyle(color: Color(0xff5b5858), fontWeight: FontWeight.bold),
+      ),
     );
 
     createTile(Post post) => Hero(
           tag: post.id,
           child: Material(
             elevation: 15.0,
-            shadowColor: Colors.yellow.shade900,
+            shadowColor: Color(0xff5b5858).withOpacity(0.5),
             child: InkWell(
               onTap: () => Navigator.of(context, rootNavigator: true).push(
                 MaterialPageRoute(
@@ -59,7 +47,7 @@ class Home extends StatelessWidget {
     return Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("res/0.jpg"), fit: BoxFit.cover)),
+                image: AssetImage("res/0.png"), fit: BoxFit.cover)),
         child: Scaffold(
           drawer: MyDrawer(),
           backgroundColor: Colors.transparent,
@@ -95,14 +83,15 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircularProgressIndicator(
-                        color: Colors.orange,
+                        color: Color(0xff5b5858),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         "මදක් රැදීසිටින්න...",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: Color(0xff5b5858)),
                       )
                     ],
                   ),
